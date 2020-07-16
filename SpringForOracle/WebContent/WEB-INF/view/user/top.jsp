@@ -5,7 +5,7 @@
 String user_name = CmmUtil.nvl((String)session.getAttribute("name"));
 %>
 
-<!-- 커밋 수정 16 CSs -->
+<!-- 커밋 수정 v0.1 CSs -->
 
 <style>
 #top {
