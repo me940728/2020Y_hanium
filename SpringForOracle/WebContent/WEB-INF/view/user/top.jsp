@@ -4,9 +4,7 @@
 <% 
 String user_name = CmmUtil.nvl((String)session.getAttribute("name"));
 %>
-
 <!-- 커밋 수정 v1.62 CSs -->
-
 <style>
 #top {
 display : inline;
