@@ -5,6 +5,7 @@
 String user_name = CmmUtil.nvl((String)session.getAttribute("name"));
 %>
 <!-- 커밋 수정 v1.62 CSs -->
+
 <style>
 #top {
 display : inline;
@@ -12,6 +13,7 @@ position: relative;
 left : 100px;
 }
 </style>
+
 <body>
 <div id="top">
 			<%if(user_name.isEmpty()) {%> <a href="/user/userLogin.do"
