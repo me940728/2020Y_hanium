@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="poly.persistance.mapper.IBoardMapper">
+
+	<select id="getBoardList" resultType="BoardDTO">
+		SELECT POST_NO, POST_TITLE, REG_DT, REG_ID FROM BOARD
+	</select>
+
+	<insert id="insertPost" parameterType="BoardDTO">
+		INSERT INTO BOARD(
+		POST_NO,
+		REG_ID,
+		POST_TITLE,
+		POST_CONTENT,
+		UPD_ID
+		)VALUES(
+		POST_SEQ.NEXTVAL,
+		#{reg_id},
+		#{post_title},
+		#{post_content},
+		#{reg_id}
+		)
+	</insert>
+	<select id="getBoardDetail" parameterType="BoardDTO"
+		resultType="BoardDTO">
+		SELECT
+		POST_NO,
+		POST_TITLE,
+		POST_CONTENT,
+		REG_ID
+		FROM
+		BOARD
+		WHERE
+		POST_NO=#{post_no}
+	</select>
+	<update id="updatePost" parameterType="BoardDTO">
+		UPDATE BOARD
+		SET
+		POST_TITLE=#{post_title},
+		POST_CONTENT=#{post_content}
+		WHERE
+		POST_NO=#{post_no}
+	</update>
+	<delete id="deletePost" parameterType="BoardDTO">
+		DELETE FROM BOARD
+		WHERE
+		POST_NO=#{post_no}
+	</delete>
+	<select id="getUserList" parameterType="BoardDTO"
+		resultType="BoardDTO">
+		SELECT
+		POST_NO,
+		POST_TITLE,
+		REG_DT,
+		REG_ID
+		FROM
+		BOARD
+		WHERE
+		POST_TITLE LIKE '%' || #{post_title} || '%'
+	</select>
+</mapper>
+
