@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="poly.persistance.mapper.IUserMapper">
+
+	<!-- 아이디 비밀번호  -->
+<select id="getLoginInfo" resultType="UserInfoDTO">
+SELECT 
+EMAIL, 
+USER_NAME, 
+PASSWORD
+ 
+FROM USER_INFO
+WHERE EMAIL = #{email} AND PASSWORD = #{password}
+</select>
+
+<select id="getMyList" resultType="MyPageDTO">
+SELECT 
+G.file_name, 
+G.gal_nb, 
+G.gal_rep,
+G.email
+
+FROM GALTABLE G
+JOIN USER_INFO U
+ON U.email = G.Email
+</select>
+</mapper>
