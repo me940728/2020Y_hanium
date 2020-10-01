@@ -4,8 +4,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	<%
-	List<MyPageDTO> rList = (List<MyPageDTO>) request.getAttribute("rList");
-	String user_id = CmmUtil.nvl((String)session.getAttribute("id"));
+	List<MyPageDTO> rList = (List<MyPageDTO>)request.getAttribute("rList");
+	String email = CmmUtil.nvl((String)session.getAttribute("email"));
 %>
 <!DOCTYPE html>
 <html>
@@ -129,7 +129,7 @@
             </div>
             <div class="col-lg-5 iphone-wrap">
             <%for(MyPageDTO i : rList) {
-            		if(user_id.equals(i.getUser_id())) {
+            		if(email.equals(i.getEmail())) {
             			if(i.getGal_rep().equals("1")){%>
              <img src="/fileFolder/<%=i.getFile_name()%>" alt="Image" class="phone-1" data-aos="fade-right"> 
               <!-- <img src="/resources/assets/img/phone_2.png" alt="Image" class="phone-2" data-aos="fade-right" data-aos-delay="200"> -->

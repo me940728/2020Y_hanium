@@ -55,7 +55,7 @@
 		<hr>
 		<div style="text-align: right;">
 			작성자 :
-			<%=CmmUtil.nvl(rDTO.getUser_id())%></div>
+			<%=CmmUtil.nvl(rDTO.getEmail())%></div>
 		<div>
 			<p><%=CmmUtil.nvl(rDTO.getGal_content())%></p>
 		</div>
