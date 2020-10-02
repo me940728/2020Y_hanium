@@ -27,7 +27,8 @@ public class EncryptTest {
 		
 		System.out.println("dec : "+dec);
 		System.out.println("end");
-		
+		// 메일 랜덤 문자 발송용 메서드 테스트
+		System.out.println(RamdomMail.SendRamdomMail());
 	
 	}
 }
