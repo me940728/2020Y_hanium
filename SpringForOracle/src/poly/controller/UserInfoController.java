@@ -182,7 +182,7 @@ public class UserInfoController {
 			model.addAttribute("msg", msg);
 			model.addAttribute("url", url);
 			// 값 비교용 세션 담기
-			session.setAttribute("rnadom", random);
+			session.setAttribute("random", random);
 			// DTO 초기화 항상 해주기
 			pDTO = null;
 		}
@@ -204,29 +204,40 @@ public class UserInfoController {
 		log.info(this.getClass().getName() + "user/doChangePw start");
 		String password = CmmUtil.nvl(EncryptUtil.encHashSHA256(request.getParameter("password")));
 		String random = CmmUtil.nvl(request.getParameter("random"));
-
+        int res = 0; // 작업 성공 여부 확인 용 
+        String msg = "";
+        String url = "";
+        // 유저 정보 담기 위한  DTO 메모리에 올리기
 		UserInfoDTO pDTO = new UserInfoDTO();
-		UserInfoDTO uDTO = new UserInfoDTO();
 
 		try {
-
 			log.info("password 암호화 완료 : " + password);
 			log.info("DTO 메모리 할당");
 			pDTO.setPassword(password);
+			pDTO.setRandom(random);
 			log.info("DTO 내용 삽입 ");
-			log.info("uDTO null? : " + (uDTO == null));
-			log.info("getPassword" + uDTO.getPassword());
-
+			res = userInfoService.doChangePw(pDTO);
+			log.info("res 1이면 성공 0이면 에러 =?" + res);
+			
+			if(res == 1) {
+				msg = "비밀번호 변경이 성공적으로 마무리 되었습니다.";
+				url ="user/userLogin";
+			} 
 		} catch (Exception e) {
 			log.info(e.toString());
 			e.printStackTrace();
 		} finally {
 			log.info(this.getClass().getName() + "doChangePw end");
-			model.addAttribute("uDTO", uDTO);
+			// 디티오 비우기 (메모리 터짐)
 			pDTO = null;
-
+			// 리다이렉트 시 메세지 및 경로 올리기 
+			// 요녀석 다음 웹 주소(http://localhost:8080/user/null)에
+			// 대해 발견된 웹페이지가 없습니다. HTTP ERROR 404 뜨는데 내일 확인
+			model.addAttribute(msg);
+			log.info(msg);
+			model.addAttribute(url);
 		}
-		return "/user/findPwRes";
+		return "/user/redirect";
 	}
 
 	// 회원가입 이메일 인증 전송

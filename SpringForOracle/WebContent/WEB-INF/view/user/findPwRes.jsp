@@ -79,21 +79,21 @@
 						<input class="input100" type="text" name="random" placeholder="인증문자" id="random">
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
-							<i class="fa fa-user"></i>
+							<i class="fa fa-lock"></i>
 						</span>
 					</div>
 					<div class="wrap-input100 validate-input m-b-10" data-validate = "Username is required">
 						<input class="input100" type="password" name="newpw" placeholder="새비밀번호" id="newpw">
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
-							<i class="fa fa-user"></i>
+							<i class="fa fa-lock"></i>
 						</span>
 					</div>
 					<div class="wrap-input100 validate-input m-b-10" data-validate = "Username is required">
 						<input class="input100" type="password" name="checkpw" placeholder="비밀번호  확인" id="checkpw">
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
-							<i class="fa fa-user"></i>
+							<i class="fa fa-lock"></i>
 						</span>
 					</div>
 					<div class="container-login100-form-btn p-t-10">

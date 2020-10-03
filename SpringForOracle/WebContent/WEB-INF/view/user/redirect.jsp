@@ -10,11 +10,12 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <script type="text/javascript">
 alert("<%=msg%>")
 location.href = "<%=url%>"
-
 </script>
+
 <meta charset="UTF-8">
 <title>redirect</title>
 </head>

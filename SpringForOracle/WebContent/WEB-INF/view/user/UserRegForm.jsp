@@ -99,19 +99,19 @@
 						</span>
 					</div>
 					
-				   <div class="wrap-input100 validate-input m-b-10" data-validate = "Username is required">
+				   <div class="wrap-input100 validate-input m-b-10" data-validate = "Password is required">
 						<input class="input100" type="password" name="password" placeholder="비밀번호">
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
-							<i class="fa fa-user"></i>
+							<i class="fa fa-lock"></i>
 						</span>
 					</div>
 					
-                  <div class="wrap-input100 validate-input m-b-10" data-validate = "Username is required">
+                  <div class="wrap-input100 validate-input m-b-10" data-validate = "Password is required">
 						<input class="input100" type="password" name="password2" placeholder="비밀번호 확인">
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
-							<i class="fa fa-user"></i>
+							<i class="fa fa-lock"></i>
 						</span>
 					</div>
 
@@ -140,7 +140,7 @@
 						<input class="input100" type="text" name="sex" placeholder="성별">
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
-							<i class="fa fa-lock"></i>
+							<i class="fa fa-user"></i>
 						</span>
 					</div>
 					
@@ -149,7 +149,7 @@
 						<input class="input100" type="text" name="user_an" placeholder="닉네임">
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
-							<i class="fa fa-lock"></i>
+							<i class="fa fa-user"></i>
 						</span>
 					</div>
 

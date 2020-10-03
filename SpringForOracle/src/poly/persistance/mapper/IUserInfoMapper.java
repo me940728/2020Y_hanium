@@ -14,5 +14,7 @@ public interface IUserInfoMapper {
 
 	// random 값 업데이트 매퍼  업데이트는 int로 
 	int updateRan(UserInfoDTO pDTO);
+    // 비밀번호 재설정
+	int doChangePw(UserInfoDTO pDTO);
 	
 }
