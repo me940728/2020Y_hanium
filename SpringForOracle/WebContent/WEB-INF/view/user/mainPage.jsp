@@ -94,7 +94,7 @@
 						<a href="/user/mainPage.do">메인페이지</a>
 					</div>
 					<div>
-						<a href="/user/userLogin.do">로그아웃</a>
+						<a href="/user/userLogOut.do">로그아웃</a>
 					</div>
 					<div>
 						<a href="/MyPage/MyPage.do">마이페이지</a>

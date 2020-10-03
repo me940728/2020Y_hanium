@@ -12,6 +12,7 @@ public class UserInfoDTO {
 	private String chg_dt; //최근수정일
 	private String seq; //회원번호
 	private String exists_yn;//중복여부
+    private String random; // 비밀번호 재설정 확인용
 	
 	//REVIEWS(피드백)
 	private String point; //점
@@ -24,7 +25,7 @@ public class UserInfoDTO {
 	private String email; //이메일
 	
 	//USER_INFO, GALTABLE
-	private String user_id; //회원아이디
+	private String user_id; //회원아이디(PK 시퀀스로 했음)
 
 	public String getUser_name() {
 		return user_name;
@@ -161,7 +162,13 @@ public class UserInfoDTO {
 	public void setUser_id(String user_id) {
 		this.user_id = user_id;
 	}
+	public String getRandom() {
+		return random;
+	}
 	
+	public void setRandom(String random) {
+		this.random = random;
+	}
 	
 
 }

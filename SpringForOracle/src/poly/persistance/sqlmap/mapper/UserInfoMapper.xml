@@ -37,4 +37,12 @@
       FROM USER_INFO
       WHERE EMAIL = #{email}
    </select>
+   <!-- 렌덤 값 업데이트 쿼리 -->
+   <update id="updateRan" parameterType="UserInfoDTO">
+   UPDATE USER_INFO 
+   SET 
+   RANDOM=#{random}
+   WHERE 
+   EMAIL=#{email}
+   </update>
 </mapper>

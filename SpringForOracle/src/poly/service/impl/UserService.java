@@ -19,13 +19,11 @@ public class UserService implements IUserService{
 
 	@Override
 	public UserInfoDTO getLoginInfo(UserInfoDTO uDTO) {
-		
 		return userMapper.getLoginInfo(uDTO);
 	}
 
 	@Override
 	public List<MyPageDTO> getMyList() {
-		// TODO Auto-generated method stub
 		return userMapper.getMyList();
 	}
 

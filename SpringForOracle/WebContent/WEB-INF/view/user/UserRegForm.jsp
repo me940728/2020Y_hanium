@@ -30,58 +30,7 @@
 <link rel="stylesheet" type="text/css" href="/resources/css/main.css">
 <!--===============================================================================================-->
 <script type="text/javascript">
-    // 이메일 인증 
-    $(function(){
-    	/*
-    	이메일 인증 번튼 클릭 시 발생하는 이벤트
-    	*/
-    	$(document).on("click", "#emailBtn", funtion(){
-    		$.ajax({
-    			beforeSend: funtion(){
-    				loadingBarStart();
-    			},
-    		    type:"get",
-    		    url : "<c:url value='/login/createEmailCheck.do'/>",
-    		    data : "userEmail=" + $("#userEmail").val() + "$rnadom=" + $("#random").val(),
-    		    success : function(data) {
-					alert("사용가능한 이메일입니다. 인증번호를 입력해주세요")
-				}
-    	},
-    	error: function(data) {
-			alert("에러가 발생하였습니다.")
-			return false;
-		}
-    })
-   })
-
-/*
-이메일 인증번호 입력 후 인증 버튼 클릭 이벤트
-*/
-$(document).on("click", "#emailAuthBtn", function(){
-$.ajax({
-beforeSend: function(){
-loadingBarStart();
-},
-type:"get",
-url:"<c:url value='/login/emailAuth.do'/>",
-data:"authCode=" + $('#emailAuth').val() + "&random=" + $("#random").val(),
-success:function(data){
-if(data=="complete"){
-alert("인증이 완료되었습니다.");
-}else if(data == "false"){
-alert("인증번호를 잘못 입력하셨습니다.")
-}
-},
-complete: function(){
-loadingBarEnd();
-},
-error:function(data){
-alert("에러가 발생했습니다.");
-}
-});
-});
-});
-
+    // 이메일 인증 서비스 만들기
 	// 회원가입 유효성 체크 
 	function doRegUserCheck(f) {
 
@@ -169,6 +118,7 @@ alert("에러가 발생했습니다.");
 
 					<div class="wrap-input100 validate-input m-b-10" data-validate = "Password is required">
 						<input class="input100" type="text" name="email" placeholder="이메일">
+						<button type="button" class="btn btn-info" id="emailBtn"> 인증문자발송</button>
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
 							<i class="fa fa-lock"></i>
@@ -181,7 +131,6 @@ alert("에러가 발생했습니다.");
 						<span class="symbol-input100">
 							<i class="fa fa-lock"></i>
 						</span>
-						<button type="button" class="btn btn-info" id="emailBtn"> 인증문자발송</button>
 						<button type="button" class="btn btn-info" id="emailAuth"> 이메일 인증</button>
 					</div>
 					<input type="hidden" path="random" id="radom" value="${random }"/>

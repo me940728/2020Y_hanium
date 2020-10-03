@@ -90,14 +90,14 @@ public class UserController {
 	}
 
 	// 로그아웃 처리 매퍼
-	@RequestMapping(value = "user/logOut.do")
+	@RequestMapping(value = "user/userLogOut.do")
 	public String logOut(HttpSession session, Model model) throws Exception {
 		log.info(this.getClass() + "user/logOut start!!");
 
 		String msg = "";
 		String url = "";
-		msg = "로그아웃 성공";
-		url = "user/userLogin.do";
+		msg = "로그아웃 하시겠습니까?";
+		url = "/user/userLogin.do";
 
 		session.invalidate(); // 세션 정보 초기화
 
@@ -106,7 +106,7 @@ public class UserController {
 
 		log.info(this.getClass() + "user/loginOut end!!");
 
-		return "/user/redirect";
+		return "user/userLogout";
 	}
 
 

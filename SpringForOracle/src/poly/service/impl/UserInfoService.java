@@ -62,4 +62,10 @@ public class UserInfoService implements IUserInfoService{
 		return res;
 	}
 
+    // 비밀번호 재설정 서비스 
+	@Override
+	public int updateRan(UserInfoDTO pDTO) {
+		return userInfoMapper.updateRan(pDTO);
+	}
+
 }

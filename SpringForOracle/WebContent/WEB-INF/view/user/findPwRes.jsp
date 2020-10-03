@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>회원가입 화면</title>
+<title>비밀번호 재설정</title>
 <meta name="viewport" content="width=device-width, initial-scale=1"> <!-- 경로 앞에 / 붙히기 무조건 -->
 <!--===============================================================================================-->
 <link rel="icon" type="image/png" href="/resources/images/icons/favicon.ico" />
@@ -34,9 +34,26 @@
 	// 회원가입 유효성 체크 
 	function doSerchUserCheck(f) {
 
-		if (f.email.value == "") {
-			alert("이메일을 입력하세요.");
-			f.email.focus();
+		if (f.random.value == "") {
+			alert("인증번호를 입력하세요.");
+			f.random.focus();
+			return false;
+		}
+
+		if (f.newpw.value == "") {
+			alert("비밀번호을 입력하세요.");
+			f.newpw.focus();
+			return false;
+		}
+
+		if (f.checkpw.value == "") {
+			alert("비밀번호확인을 입력하세요.");
+			f.checkpw.focus();
+			return false;
+		}
+		
+		if(f.checkpw.value != f.newpw.value){
+			alert("비밀번호가 서로 다릅니다.")
 			return false;
 		}
 	}
@@ -52,22 +69,36 @@
 					</div>
 
 					<span class="login100-form-title p-t-20 p-b-45">
-						아이디/비밀번호 찾기
+						비밀번호 변경/재설정
 					</span>
                                        
-				<form name="f" method="post" action="/user/userSerchEmailCheck.do"
+				<form name="f" method="post" action="/user/doChangePw.do"
 					onsubmit="return doSerchUserCheck(this);">
 					
 					<div class="wrap-input100 validate-input m-b-10" data-validate = "Username is required">
-						<input class="input100" type="email" name="email" placeholder="이메일" id="email">
+						<input class="input100" type="text" name="random" placeholder="인증문자" id="random">
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-user"></i>
+						</span>
+					</div>
+					<div class="wrap-input100 validate-input m-b-10" data-validate = "Username is required">
+						<input class="input100" type="password" name="newpw" placeholder="새비밀번호" id="newpw">
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-user"></i>
+						</span>
+					</div>
+					<div class="wrap-input100 validate-input m-b-10" data-validate = "Username is required">
+						<input class="input100" type="password" name="checkpw" placeholder="비밀번호  확인" id="checkpw">
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
 							<i class="fa fa-user"></i>
 						</span>
 					</div>
 					<div class="container-login100-form-btn p-t-10">
-						<button type="submit" class="login100-form-btn" id="emailCheck">
-							인증문자 발송</button>
+						<button type="submit" class="login100-form-btn" id="pwres">
+							변경</button>
 					</div>
 				</form>
 				<div class="container-login100-form-btn p-t-10">
