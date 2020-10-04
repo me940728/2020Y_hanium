@@ -72,6 +72,11 @@ public class UserInfoService implements IUserInfoService{
 	public int doChangePw(UserInfoDTO pDTO) {
 		return userInfoMapper.doChangePw(pDTO);
 	}
+    // 랜덤속성으로 이메일 가져오는 메서드
+	@Override
+	public UserInfoDTO getUserEmail(UserInfoDTO pDTO) {
+		return userInfoMapper.getUserEmail(pDTO);
+	}
 
 
 }

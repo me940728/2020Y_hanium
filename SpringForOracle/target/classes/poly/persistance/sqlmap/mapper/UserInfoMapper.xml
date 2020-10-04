@@ -5,38 +5,40 @@
 
    <!-- 회원 가입하기 (회원정보 등록하기) -->
    <insert id="InsertUserInfo" parameterType="UserInfoDTO">
-   INSERT INTO USER_INFO
-      (
-         USER_ID,
-         USER_NAME,
-         PASSWORD,
-         EMAIL,
-         SEX,
-         USER_AN,
-         REG_ID,
-         REG_DT,
-         CHG_ID,
-         CHG_DT
-      )
-   VALUES(
-         USER_SEQ.NEXTVAL,
-         #{user_name},
-         #{password},
-         #{email},
-         #{sex},
-         #{user_name},
-         #{user_name},
-         SYSDATE,
-         #{user_name},
-         SYSDATE
-   )
+	INSERT INTO USER_INFO
+	(
+	USER_ID,
+	USER_NAME,
+	PASSWORD,
+	EMAIL,
+	SEX,
+	USER_AN,
+	REG_ID,
+	REG_DT,
+	CHG_ID,
+	CHG_DT
+	)
+	VALUES(
+	USER_SEQ.NEXTVAL,
+	#{user_name},
+	#{password},
+	#{email},
+	#{sex},
+	#{user_name},
+	#{user_name},
+	SYSDATE,
+	#{user_name},
+	SYSDATE
+	)
    </insert>
+   
    <!-- 이메일로 회원가입 중복 체크 -->
    <select id="getUserExists" parameterType="UserInfoDTO" resultType="UserInfoDTO">
       SELECT DECODE(COUNT(1), 0, 'N','Y') AS EXISTS_YN
       FROM USER_INFO
       WHERE EMAIL = #{email}
    </select>
+   
    <!-- 렌덤 값 업데이트 쿼리 -->
    <update id="updateRan" parameterType="UserInfoDTO">
    UPDATE USER_INFO 
@@ -45,12 +47,26 @@
    WHERE 
    EMAIL=#{email}
    </update>
+   
+   <!--랜덤 값으로 유저 정보 가져오는 쿼리-->
+   <select id="getUserEmail" resultType="UserInfoDTO" parameterType="UserInfoDTO">
+   SELECT 
+   EMAIL 
+   FROM 
+   USER_INFO
+   WHERE 
+   RANDOM=#{random}
+   </select>
+   
    <!-- 비밀번호 재설정  -->
    <update id="doChangePw" parameterType="UserInfoDTO">
    UPDATE USER_INFO 
-   SET 
-   PASSWORD=#{password}
+   SET
+   CHG_ID=#{email},
+   PASSWORD=#{password},
+   CHG_DT=SYSDATE
    WHERE 
    RANDOM=#{random}
    </update>
+
 </mapper>

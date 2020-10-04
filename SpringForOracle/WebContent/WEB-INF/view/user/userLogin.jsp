@@ -49,7 +49,7 @@
 				<form action="/user/userLoginProc.do" method="post">
 					<div class="wrap-input100 validate-input m-b-10"
 						data-validate="Username is required">
-						<input class="input100" type="text" name="email" placeholder="이메일">
+						<input class="input100" type="email" name="email" placeholder="이메일">
 						<span class="focus-input100"></span> <span class="symbol-input100">
 							<i class="fa fa-user"></i>
 						</span>

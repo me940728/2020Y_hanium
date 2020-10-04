@@ -23,8 +23,8 @@ public class MailService implements IMailService{
 	private Logger log = Logger.getLogger(this.getClass());
 	//
 	final String host = "smtp.naver.com"; // 상수값으로 한 이유는 변하면 안디는 값이기 때문
-	final String user = "me940"; // 이메일 넣기
-	final String password = ""; // 비번 넣기
+	final String user = "m"; // 이메일 넣기
+	final String password = "qnfd"; // 비번 넣기
 	
 	@Override
 	public int doSendMail(MailDTO pDTO) {

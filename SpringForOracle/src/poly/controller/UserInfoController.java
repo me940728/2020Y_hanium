@@ -202,27 +202,47 @@ public class UserInfoController {
 	public String doChangePw(HttpServletRequest request, HttpServletResponse response, ModelMap model)
 			throws Exception {
 		log.info(this.getClass().getName() + "user/doChangePw start");
+		
 		String password = CmmUtil.nvl(EncryptUtil.encHashSHA256(request.getParameter("password")));
 		String random = CmmUtil.nvl(request.getParameter("random"));
+		String email = "";
         int res = 0; // 작업 성공 여부 확인 용 
         String msg = "";
         String url = "";
+        
         // 유저 정보 담기 위한  DTO 메모리에 올리기
 		UserInfoDTO pDTO = new UserInfoDTO();
-
+		// 이메일 가져오기 위한 랜덤값 셋팅
+		pDTO.setRandom(random);
+		// 수정자 수정을  하려고 랜덤값으로 수정자 이메일 가져오는 서비스 만듦 uDTO에 값을 다시 담아줘야함 uDTO = 이렇게
+		pDTO = userInfoService.getUserEmail(pDTO);
+		email = pDTO.getEmail();
+		// 이메일 잘 가져오는지 체크용
+		log.info("이메일 : " + EncryptUtil.decAES128CBC(pDTO.getEmail()));
+		// DTO 재사용 하려면 항상 DTO 비워주고 다시 사용해야함
+		pDTO = null;
 		try {
+			// 메모리 다시 올리기
+			pDTO = new UserInfoDTO();
 			log.info("password 암호화 완료 : " + password);
-			log.info("DTO 메모리 할당");
+			log.info("DTO 메모리 할당 성공");
+			// 변경 할 비밀번호 셋팅
 			pDTO.setPassword(password);
 			pDTO.setRandom(random);
-			log.info("DTO 내용 삽입 ");
+			pDTO.setEmail(email);
+			log.info("DTO에 비밀번호 내용 저장 완료 : " + pDTO.getPassword());
+			// 데이터 잘들어갔는지 확인용 res
 			res = userInfoService.doChangePw(pDTO);
 			log.info("res 1이면 성공 0이면 에러 =?" + res);
 			
+			// 데이터 잘 들어갔으니 변경 완료 알람 창 띄운 후 링크 변경 
 			if(res == 1) {
 				msg = "비밀번호 변경이 성공적으로 마무리 되었습니다.";
-				url ="user/userLogin";
-			} 
+				url ="./";
+			} else {
+				msg = "비밀번호 변경 에러 ";
+				url = "./";
+			}
 		} catch (Exception e) {
 			log.info(e.toString());
 			e.printStackTrace();
@@ -230,9 +250,7 @@ public class UserInfoController {
 			log.info(this.getClass().getName() + "doChangePw end");
 			// 디티오 비우기 (메모리 터짐)
 			pDTO = null;
-			// 리다이렉트 시 메세지 및 경로 올리기 
-			// 요녀석 다음 웹 주소(http://localhost:8080/user/null)에
-			// 대해 발견된 웹페이지가 없습니다. HTTP ERROR 404 뜨는데 내일 확인
+			// 이친구 리다이렉트로 넘어가면서 에러 해결이 안댐... 홀리 쉿...
 			model.addAttribute(msg);
 			log.info(msg);
 			model.addAttribute(url);
