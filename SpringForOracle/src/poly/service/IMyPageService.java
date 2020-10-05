@@ -3,6 +3,7 @@ package poly.service;
 import java.util.List;
 
 import poly.dto.MyPageDTO;
+import poly.dto.UserInfoDTO;
 
 
 public interface IMyPageService {
@@ -14,5 +15,7 @@ public interface IMyPageService {
 	MyPageDTO getimgDetail(MyPageDTO pDTO);
 	//상태글
 	int UpdateState(MyPageDTO pDTO);
+	// 
+	int UpDateMynb(UserInfoDTO PDTO);
 
 }

@@ -91,13 +91,13 @@
 				<!-- 기타 이동 로고-->
 				<div class="right_icons" style="width: 25%;">
 					<div>
-						<a href="/user/mainPage.do">메인페이지</a>
+						<a href="/user/mainPage.do">회원정보</a>
 					</div>
 					<div>
 						<a href="/user/userLogOut.do">로그아웃</a>
 					</div>
 					<div>
-						<a href="/MyPage/MyPage.do">마이페이지</a>
+						<a href="/MyPage/MyPage.do">옷장</a>
 					</div>
 				</div>
 			</section>
@@ -149,7 +149,7 @@
 
         <div class="row justify-content-center text-center mb-5">
           <div class="col-md-5" data-aos="fade-up">
-            <h2 class="section-heading">Save your time to using SoftLand</h2>
+            <h2 class="section-heading">MY'C 의상추천</h2>
           </div>
         </div>
 
@@ -159,7 +159,7 @@
               <div class="wrap-icon icon-1">
                 <span class="icon la la-users"></span>
               </div>
-              <h3 class="mb-3">Explore Your Team</h3>
+              <h3 class="mb-3">상의</h3>
               <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem, optio.</p>
             </div>
           </div>
@@ -168,7 +168,7 @@
               <div class="wrap-icon icon-1">
                 <span class="icon la la-toggle-off"></span>
               </div>
-              <h3 class="mb-3">Digital Whiteboard</h3>
+              <h3 class="mb-3">하의</h3>
               <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem, optio.</p>
             </div>
           </div>
@@ -177,7 +177,7 @@
               <div class="wrap-icon icon-1">
                 <span class="icon la la-umbrella"></span>
               </div>
-              <h3 class="mb-3">Design To Development</h3>
+              <h3 class="mb-3">기타</h3>
               <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem, optio.</p>
             </div>
           </div>

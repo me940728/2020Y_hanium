@@ -13,6 +13,8 @@ public class UserInfoDTO {
 	private String seq; //회원번호
 	private String exists_yn;//중복여부
     private String random; // 비밀번호 재설정 확인용
+    private String my_nb;//개인 이미지 게시판 번호
+    private String my_content; //개인 상태글
 	
 	//REVIEWS(피드백)
 	private String point; //점
@@ -26,6 +28,22 @@ public class UserInfoDTO {
 	
 	//USER_INFO, GALTABLE
 	private String user_id; //회원아이디(PK 시퀀스로 했음)
+
+	public String getMy_nb() {
+		return my_nb;
+	}
+
+	public void setMy_nb(String my_nb) {
+		this.my_nb = my_nb;
+	}
+
+	public String getMy_content() {
+		return my_content;
+	}
+
+	public void setMy_content(String my_content) {
+		this.my_content = my_content;
+	}
 
 	public String getUser_name() {
 		return user_name;

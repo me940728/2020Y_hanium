@@ -73,7 +73,7 @@ public class UserController {
 			url = "/user/userLogin.do";
 			// 값이 있으면 로그인 성공
 		} else {
-			log.info("uDTO ID : " + uDTO.getUser_id()); // 이메일로 바뀌었음
+			log.info("uDTO EMAIL : " + uDTO.getEmail()); 
 			log.info("uDTO PWD : " + uDTO.getPassword());
 			log.info("uDTO NAME : " + uDTO.getUser_name());
 			msg = "로그인 성공";
@@ -86,8 +86,8 @@ public class UserController {
 			//-------------------------
 			url = "/user/mainPage.do";
 			// 성공된 로그인 정보를 세션에 담아 보내는 코드
-			session.setAttribute("id", uDTO.getUser_id()); // 이메일로 바뀌었음
-			session.setAttribute("name", uDTO.getUser_name());
+			session.setAttribute("email", uDTO.getEmail()); // 이메일로 바뀌었음
+			session.setAttribute("name_name", uDTO.getUser_name());
 		}
 		// 모델 객체에 메세지와 url을 담는 코드
 		model.addAttribute("msg", msg);
@@ -128,7 +128,6 @@ public class UserController {
 		
 		if (rList==null){
 			rList = new ArrayList<MyPageDTO>();
-			
 		}
 		log.info(rList);
 		//조회된 리스트 결과값 넣어주기

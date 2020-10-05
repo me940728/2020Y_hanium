@@ -42,13 +42,13 @@
 				<!-- 기타 이동 로고-->
 				<div class="right_icons" style="width: 25%;">
 					<div>
-						<a href="/user/mainPage.do">메인페이지</a>
+						<a href="/user/mainPage.do">회원정보</a>
 					</div>
 					<div>
 						<a href="/user/userLogOut.do">로그아웃</a>
 					</div>
 					<div>
-						<a href="/MyPage/MyPage.do">마이페이지</a>
+						<a href="/MyPage/MyPage.do">옷장</a>
 					</div>
 				</div>
 			</section>
