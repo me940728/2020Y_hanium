@@ -164,7 +164,8 @@ public class UserInfoController {
 			email = EncryptUtil.decAES128CBC(email);
 			log.info("이메일 : " + email);
 			log.info("DTO is Null?" + (pDTO == null));
-			log.info(pDTO.getRandom() + "잘 나옴");
+			log.info("랜덤문자: " + pDTO.getRandom());
+			// 랜덤문자 메일 발송 로직
 			mDTO.setToMail(email);
 			mDTO.setTitle("마이도씨 비밀번호 변경용 인증 문자 입니다.");
 			mDTO.setContents("인증 문자는 :  " + random + "  입니다.");
@@ -204,6 +205,7 @@ public class UserInfoController {
 		log.info(this.getClass().getName() + "user/doChangePw start");
 		
 		String password = CmmUtil.nvl(EncryptUtil.encHashSHA256(request.getParameter("password")));
+		log.info(password);
 		String random = CmmUtil.nvl(request.getParameter("random"));
 		String email = "";
         int res = 0; // 작업 성공 여부 확인 용 
@@ -221,7 +223,7 @@ public class UserInfoController {
 		log.info("이메일 : " + EncryptUtil.decAES128CBC(pDTO.getEmail()));
 		// DTO 재사용 하려면 항상 DTO 비워주고 다시 사용해야함
 		pDTO = null;
-		try {
+		try { // try문은 지역변수
 			// 메모리 다시 올리기
 			pDTO = new UserInfoDTO();
 			log.info("password 암호화 완료 : " + password);
@@ -238,7 +240,7 @@ public class UserInfoController {
 			// 데이터 잘 들어갔으니 변경 완료 알람 창 띄운 후 링크 변경 
 			if(res == 1) {
 				msg = "비밀번호 변경이 성공적으로 마무리 되었습니다.";
-				url ="./";
+				url ="user/userLogin";
 			} else {
 				msg = "비밀번호 변경 에러 ";
 				url = "./";
@@ -254,6 +256,7 @@ public class UserInfoController {
 			model.addAttribute(msg);
 			log.info(msg);
 			model.addAttribute(url);
+			log.info(url);
 		}
 		return "/user/redirect";
 	}

@@ -14,11 +14,13 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import poly.dto.MailDTO;
 import poly.dto.MyPageDTO;
 import poly.dto.UserInfoDTO;
 import poly.service.IUserService;
-
+import poly.service.impl.MailService;
 import poly.util.CmmUtil;
+import poly.util.DateUtill;
 import poly.util.EncryptUtil;
 
 @Controller
@@ -28,6 +30,9 @@ public class UserController {
 
 	@Resource(name = "UserService")
 	private IUserService userService;
+	
+	@Resource(name = "MailService")
+	private MailService mailService;
 
 	// 유저 로그인 접속
 	@RequestMapping(value = "user/userLogin")
@@ -46,21 +51,19 @@ public class UserController {
 		// user/userLogin.jsp에서 온 파라미터 정보를 변수에 담는 코드
 		String email = EncryptUtil.encAES128CBC(CmmUtil.nvl(request.getParameter("email")));
 		String pwd = EncryptUtil.encHashSHA256(CmmUtil.nvl(request.getParameter("password")));
-		
-		// 비밀번호 암호 유무 확인
-		log.info(pwd);
+
 		// 변수에 담긴 데이터를 메모리에 올리는 코드
 		UserInfoDTO uDTO = new UserInfoDTO();
-		// 코드를 디코딩 하는 알고리즘
 		// 메모리에 올라온 DTO 메서드에 데이터를 담는 코드
 		uDTO.setEmail(email);
 		uDTO.setPassword(pwd);
-		
-		log.info(EncryptUtil.decAES128CBC(email));
-		log.info("DTO에 값은 들어감");
-		// 로그인 메서드에 값을 담고 다시 받아오는 코드
+		log.info("암호 : " + uDTO.getPassword());
+		log.info("이메일 : " + uDTO.getEmail());
+		log.info("DTO에 데이터 set 완료");
+		// DTO에 set된 데이터를 매퍼와 연결하는 서비스
 		uDTO = userService.getLoginInfo(uDTO);
-		// 값을 잘 받아왔는지 확인 하는 코드
+		
+		// 값이 잘 저장되었는디 확인 하는 로그
 		log.info("uDTO null?" + (uDTO == null));
 		String msg = "";
 		String url = "/user/userLogin.do";
@@ -70,14 +73,20 @@ public class UserController {
 			url = "/user/userLogin.do";
 			// 값이 있으면 로그인 성공
 		} else {
-			log.info("uDTO ID : " + uDTO.getUser_id());
+			log.info("uDTO ID : " + uDTO.getUser_id()); // 이메일로 바뀌었음
 			log.info("uDTO PWD : " + uDTO.getPassword());
 			log.info("uDTO NAME : " + uDTO.getUser_name());
 			msg = "로그인 성공";
-			
+			// 로그인 알림 메일 발송
+			MailDTO mDTO = new MailDTO();
+			mDTO.setToMail(EncryptUtil.decAES128CBC(CmmUtil.nvl(uDTO.getEmail())));
+			mDTO.setTitle("로그인 알림");
+			mDTO.setContents(DateUtill.getDateTime("yyyy.MM.dd:24h:mm:ss") + "에" + CmmUtil.nvl(uDTO.getUser_name() + "님이 로그인 하였습니다."));
+			mailService.doSendMail(mDTO);
+			//-------------------------
 			url = "/user/mainPage.do";
 			// 성공된 로그인 정보를 세션에 담아 보내는 코드
-			session.setAttribute("id", uDTO.getUser_id());
+			session.setAttribute("id", uDTO.getUser_id()); // 이메일로 바뀌었음
 			session.setAttribute("name", uDTO.getUser_name());
 		}
 		// 모델 객체에 메세지와 url을 담는 코드
@@ -86,6 +95,7 @@ public class UserController {
 
 		log.info(this.getClass() + "/user/userLoginProc end!!");
 		// user/redirect.jsp로 리턴 해주느 코드
+		uDTO = null;
 		return "/user/redirect";
 	}
 
@@ -108,7 +118,6 @@ public class UserController {
 
 		return "user/userLogout";
 	}
-
 
 	// 로그인 성공 후 메인접속 메퍼
 	@RequestMapping(value = "user/mainPage.do")

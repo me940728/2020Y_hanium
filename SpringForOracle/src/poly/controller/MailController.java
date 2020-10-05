@@ -58,7 +58,8 @@ public class MailController {
 		
 		model.addAttribute("res", String.valueOf(res));
 		log.info(this.getClass().getName() + "메일 보내기 종료");
-		
+		// 메모리 비우기
+		pDTO = null;
 		
 		return "/mail/sendMailResult";
 	}
