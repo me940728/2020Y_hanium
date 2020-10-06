@@ -74,16 +74,13 @@
             <div class="hori_cont">
                <div class="profile_wrap">
                   <div class="profile_img">
-                     <%int max = -1;
-                     for (MyPageDTO k : rList) {
-                           if (CmmUtil.nvl(k.getGal_rep()).equals("1")) {
-                              if (max < Integer.parseInt(k.getGal_nb())) {
-                                  max = Integer.parseInt(k.getGal_nb());
+                     <%for (MyPageDTO k : rList) {
+                         if (CmmUtil.nvl(k.getGal_rep()).equals("1")) {
                      %>
-                     <a href="/MyPage/imgDetail.do?no=<%=max%>"> <img
+                     <a href="/MyPage/imgDetail.do?no=<%=k.getGal_nb()%>"> <img
                         src="/fileFolder/<%=k.getFile_name()%>" /></a>
                      <%
-                        break; }}}
+                        break; }}
                      %>
                   </div>
                </div>

@@ -64,7 +64,7 @@ public class UserController {
 		uDTO = userService.getLoginInfo(uDTO);
 		
 		// 값이 잘 저장되었는디 확인 하는 로그
-		log.info("uDTO null?" + (uDTO == null));
+		log.info("uDTO null? " + (uDTO == null));
 		String msg = "";
 		String url = "/user/userLogin.do";
 		// 값이 없으면 로그인 실패

@@ -364,6 +364,7 @@ public class UserInfoController {
 		} catch (Exception e) {
 			log.info(e.toString());
 			e.printStackTrace();
+			
 		} finally {
 			log.info(this.getClass().getName() + "회원정보 수정 end 2");
 		}

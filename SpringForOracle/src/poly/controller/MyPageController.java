@@ -78,7 +78,7 @@ public class MyPageController {
 		MultipartFile File = request.getFile("file_content");
 
 		// 이미지 파일이 들어갈 경로 설정
-		String path = "C:\\hanium-space\\MyC\\WebContent\\fileFolder\\";
+		String path = "C:\\Users\\Byeol Kyu CHOI\\git\\2020Y_hanium\\SpringForOracle\\WebContent\\fileFolder\\";
 		String originFileName = File.getOriginalFilename(); // 원본 파일 명
 
 		// 파일이 잘 들어 갔는지 원본 파일명과 사이즈 체크

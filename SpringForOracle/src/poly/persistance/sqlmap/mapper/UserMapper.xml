@@ -22,6 +22,6 @@
 		GALTABLE G,
 		USER_INFO U
 		WHERE 
-		U.email = G.EMAIL or G.EMAIL='root'
+		U.email = G.EMAIL or G.EMAIL='root' and G.gal_nb>='0'ORDER BY G.gal_nb DESC
 	</select>
 </mapper>

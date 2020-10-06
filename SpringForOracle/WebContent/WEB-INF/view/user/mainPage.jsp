@@ -141,15 +141,14 @@
               <p data-aos="fade-right" data-aos-delay="200" data-aos-offset="-500"><a href="#" class="btn btn-outline-white">추천받기</a></p>
             </div>
             <div class="col-lg-5 iphone-wrap">
-            <%for(MyPageDTO i : rList) {
-                  if(email.equals(i.getEmail())) {
-                     if(i.getGal_rep().equals("1")){%>
+            <%for (MyPageDTO i : rList) {
+                   if(email.equals(i.getEmail()) || i.getEmail().equals("root")){
+                    if (CmmUtil.nvl(i.getGal_rep()).equals("1")) {
+                     %>
              <img src="/fileFolder/<%=i.getFile_name()%>" alt="Image" class="phone-1" data-aos="fade-right"> 
-             <%}else{ %>
-             <img src="/fileFolder/main.png" alt="Image" class="phone-1" data-aos="fade-right">
-                <%}} else if(i.getEmail().equals("root")){%>
-                   <img src="/fileFolder/<%=i.getFile_name()%>" alt="Image" class="phone-1" data-aos="fade-right">
-                <%}}%>
+                <%break; } else {%>
+                   <img src="/fileFolder/main.png" alt="Image" class="phone-1" data-aos="fade-right">
+                <%break;}}}%>
               <!-- <img src="/resources/assets/img/phone_2.png" alt="Image" class="phone-2" data-aos="fade-right" data-aos-delay="200"> -->
             </div>
           </div>

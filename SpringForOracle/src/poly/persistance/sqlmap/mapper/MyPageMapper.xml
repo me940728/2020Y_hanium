@@ -32,7 +32,7 @@
       )
       VALUES(
       gal_seq.nextval, 
-      #{user_id}, 
+      #{email}, 
       #{gal_name},
       #{gal_content}, 
       #{file_content}, 
