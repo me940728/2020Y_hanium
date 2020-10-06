@@ -91,7 +91,7 @@
 				<!-- 기타 이동 로고-->
 				<div class="right_icons" style="width: 25%;">
 					<div>
-						<a href="/user/mainPage.do">회원정보</a>
+						<a href="/user/cngeUserInfo.do">회원정보</a>
 					</div>
 					<div>
 						<a href="/user/userLogOut.do">로그아웃</a>

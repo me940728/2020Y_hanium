@@ -25,7 +25,7 @@ public class EncryptUtil {
 	 * 일반적인 암호화 알고리즘 SHA-256을 통해서 암호화 시킬 경우, 암호화 된 값만 보고 일반적인 비밀번호에 대한 값을 쉽게 예측 가능하기
 	 * 때문에 암호화 할때 암호화 되는 값에 추가적인 문자열을 붙여서 암호화를 진행
 	 */	
-	final static String addMaessge = "1234"; //임의 값
+	final static String addMaessge = "poly"; //임의 값
 	
 	/* AES128-CBC 암호화 알고리즘에 사용되는 초기 백터와 암호화 키 */
 	

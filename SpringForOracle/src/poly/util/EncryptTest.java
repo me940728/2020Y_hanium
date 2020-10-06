@@ -8,7 +8,7 @@ public class EncryptTest {
 		System.out.println("해시 알고리즘");
 		
 		//암호화 문자열
-		String str ="암호화할 문자열";
+		String str ="1234";
 		
 		//복호화가 불가능한 해시함호화 알고리즘 실행
 		String hashEnc = EncryptUtil.encHashSHA256(str);

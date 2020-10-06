@@ -4,6 +4,7 @@ import java.io.UnsupportedEncodingException;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.crypto.BadPaddingException;
@@ -27,6 +28,8 @@ import poly.dto.MailDTO;
 import poly.dto.UserInfoDTO;
 import poly.service.IMailService;
 import poly.service.IUserInfoService;
+import poly.service.impl.UserInfoService;
+import poly.service.impl.UserService;
 import poly.util.CmmUtil;
 import poly.util.EncryptUtil;
 import poly.util.RamdomMail;
@@ -171,13 +174,7 @@ public class UserInfoController {
 			mDTO.setContents("인증 문자는 :  " + random + "  입니다.");
 			// 최종 전송
 			mailservice.doSendMail(mDTO);
-
-		} catch (Exception e) {
-			msg = "실패하였습니다. : " + e.toString();
-			log.info(e.toString());
-			e.printStackTrace();
-		} finally {
-			log.info(this.getClass().getName() + "이상무!");
+			
 			msg = "이메일로 인증문자를 발송하였습니다.";
 			url = "/user/findPwRes.do";
 			model.addAttribute("msg", msg);
@@ -185,6 +182,17 @@ public class UserInfoController {
 			// 값 비교용 세션 담기
 			session.setAttribute("random", random);
 			// DTO 초기화 항상 해주기
+
+		} catch (Exception e) {
+			msg = "실패하였습니다. : " + e.toString();
+			log.info(e.toString());
+			e.printStackTrace();
+		} finally {
+			log.info(this.getClass().getName() + "이상무!");
+			//변수와 메모리 초기화
+			msg = "";
+			url = "";
+			mDTO = null;
 			pDTO = null;
 		}
 
@@ -203,28 +211,28 @@ public class UserInfoController {
 	public String doChangePw(HttpServletRequest request, HttpServletResponse response, ModelMap model)
 			throws Exception {
 		log.info(this.getClass().getName() + "user/doChangePw start");
-		
-		String password = CmmUtil.nvl(EncryptUtil.encHashSHA256(request.getParameter("password")));
-		log.info(password);
-		String random = CmmUtil.nvl(request.getParameter("random"));
-		String email = "";
-        int res = 0; // 작업 성공 여부 확인 용 
-        String msg = "";
-        String url = "";
-        
-        // 유저 정보 담기 위한  DTO 메모리에 올리기
-		UserInfoDTO pDTO = new UserInfoDTO();
-		// 이메일 가져오기 위한 랜덤값 셋팅
-		pDTO.setRandom(random);
-		// 수정자 수정을  하려고 랜덤값으로 수정자 이메일 가져오는 서비스 만듦 uDTO에 값을 다시 담아줘야함 uDTO = 이렇게
-		pDTO = userInfoService.getUserEmail(pDTO);
-		email = pDTO.getEmail();
-		// 이메일 잘 가져오는지 체크용
-		log.info("이메일 : " + EncryptUtil.decAES128CBC(pDTO.getEmail()));
-		// DTO 재사용 하려면 항상 DTO 비워주고 다시 사용해야함
-		pDTO = null;
+
 		try { // try문은 지역변수
-			// 메모리 다시 올리기
+			String password = CmmUtil.nvl(EncryptUtil.encHashSHA256(request.getParameter("password")));
+			log.info("비밀번호: " + password);
+			String random = CmmUtil.nvl(request.getParameter("random"));
+			log.info("랜덤 값 : " + random);
+			String email = "";
+			int res = 0; // 작업 성공 여부 확인 용
+			String msg = "";
+			String url = "";
+			// 랜덤값 매칭 시켜 유저 정보 가져오기 위한 DTO 설정
+			UserInfoDTO pDTO = new UserInfoDTO();
+			pDTO.setRandom(random);
+			// 수정자 수정을 하려고 랜덤값으로 수정자 이메일 가져오는 서비스 만듦 uDTO에 값을 다시 담아줘야함 uDTO = 이렇게
+			pDTO = userInfoService.getUserEmail(pDTO);
+			email = pDTO.getEmail();
+			// 이메일 잘 가져오는지 체크용
+			log.info("이메일 : " + EncryptUtil.decAES128CBC(pDTO.getEmail()));
+			// DTO 재사용 하려면 항상 DTO 비워주고 다시 사용해야함
+			// 사용 후 충돌방지를 위한 메모리 비우기
+			pDTO = null;
+			// 재사용을 위한 메모리 올리기
 			pDTO = new UserInfoDTO();
 			log.info("password 암호화 완료 : " + password);
 			log.info("DTO 메모리 할당 성공");
@@ -236,20 +244,16 @@ public class UserInfoController {
 			// 데이터 잘들어갔는지 확인용 res
 			res = userInfoService.doChangePw(pDTO);
 			log.info("res 1이면 성공 0이면 에러 =?" + res);
-			
-			// 데이터 잘 들어갔으니 변경 완료 알람 창 띄운 후 링크 변경 
-			if(res == 1) {
+
+			// 데이터 잘 들어갔으니 변경 완료 알람 창 띄운 후 링크 변경
+			if (res == 1) {
 				msg = "비밀번호 변경이 성공적으로 마무리 되었습니다.";
-				url ="user/userLogin";
+				url = "user/userLogin";
+				res = 0;
 			} else {
 				msg = "비밀번호 변경 에러 ";
 				url = "./";
 			}
-		} catch (Exception e) {
-			log.info(e.toString());
-			e.printStackTrace();
-		} finally {
-			log.info(this.getClass().getName() + "doChangePw end");
 			// 디티오 비우기 (메모리 터짐)
 			pDTO = null;
 			// 이친구 리다이렉트로 넘어가면서 에러 해결이 안댐... 홀리 쉿...
@@ -257,6 +261,15 @@ public class UserInfoController {
 			log.info(msg);
 			model.addAttribute(url);
 			log.info(url);
+			msg = "";
+			url = "";
+
+		} catch (Exception e) {
+			log.info(e.toString());
+			e.printStackTrace();
+		} finally {
+			log.info(this.getClass().getName() + "doChangePw end");
+			
 		}
 		return "/user/redirect";
 	}
@@ -301,6 +314,61 @@ public class UserInfoController {
 		return new ResponseEntity<String>("complete", HttpStatus.OK);
 
 		// else return new ResponseEntity<String>("false", HttpStatus.OK);
+	}
+
+	// 메인페이지 접속 후 유저가 회원정보 수정할 때 사용하는 컨트롤러
+	@RequestMapping(value = "/user/cngeUserInfo.do")
+	public String cngeUserInfo() {
+		log.info(this.getClass().getName() + "회원정보 수정 접속 ");
+		return "/user/cngeUserInfo";
+	}
+
+	@RequestMapping(value = "/user/cngeUserInfoProc.do")
+	public String cngeUserInfoProc(HttpServletRequest request, ModelMap model, HttpSession session) throws Exception {
+		log.info(this.getClass().getName() + "회원정보 수정 접속 ");
+		// 디티오에 값 넣기위한 선언
+		UserInfoDTO pDTO = null;
+		try {
+			String password = CmmUtil.nvl(EncryptUtil.encHashSHA256(request.getParameter("password")));
+			String user_name = CmmUtil.nvl(request.getParameter("name"));
+			String user_an = CmmUtil.nvl(request.getParameter("user_an"));
+			// 로그인 성공 후 사용한 이메일 세션 값을 매칭 시켜 수정 함
+			String email = (String) session.getAttribute("email");
+			int res = 0;
+			String msg = "";
+			String url = "";
+
+			pDTO = new UserInfoDTO();
+			pDTO.setPassword(password);
+			pDTO.setUser_name(user_name);
+			pDTO.setUser_an(user_an);
+			pDTO.setEmail(email);
+			res = userInfoService.updateUserInfo(pDTO);
+
+			if (res == 1) {
+				msg = "성공적으로 변경되었습니다.";
+				url = "user/mainPage.do";
+				res = 0;
+			} else {
+				msg = "실패";
+				url = "user/mainPage.do";
+			}
+			log.info(this.getClass().getName() + "회원정보 수정 end");
+			// 디티오 비우기 (메모리 터짐)
+			pDTO = null;
+			model.addAttribute(msg);
+			log.info(msg);
+			model.addAttribute(url);
+			log.info(url);
+
+		} catch (Exception e) {
+			log.info(e.toString());
+			e.printStackTrace();
+		} finally {
+			log.info(this.getClass().getName() + "회원정보 수정 end 2");
+		}
+		log.info(this.getClass().getName() + "회원정보 수정 end 3");
+		return "/user/redirect";
 	}
 
 }

@@ -68,5 +68,18 @@
    WHERE 
    RANDOM=#{random}
    </update>
+   
+   <!-- 회원정보 수정  -->
+   <update id="updateUserInfo" parameterType="UserInfoDTO">
+   UPDATE USER_INFO 
+   SET
+   CHG_ID=#{email},
+   PASSWORD=#{password},
+   CHG_DT=SYSDATE,
+   USER_AN=#{user_an},
+   USER_NAME=#{user_name}
+   WHERE 
+   EMAIL=#{email}
+   </update>
 
 </mapper>

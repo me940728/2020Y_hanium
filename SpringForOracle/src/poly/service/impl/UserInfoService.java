@@ -77,6 +77,11 @@ public class UserInfoService implements IUserInfoService{
 	public UserInfoDTO getUserEmail(UserInfoDTO pDTO) {
 		return userInfoMapper.getUserEmail(pDTO);
 	}
+    //회원종보 수정 
+	@Override
+	public int updateUserInfo(UserInfoDTO pDTO) {
+		return userInfoMapper.updateUserInfo(pDTO);
+	}
 
 
 }
