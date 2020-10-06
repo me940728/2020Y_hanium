@@ -93,7 +93,7 @@ public class UserInfoController {
 
 			if (res == 1) {
 				msg = "회원가입이 완료되었습니다.";
-				url = "/user/mainPage.do";
+				url = "/user/userLogin.do";
 				log.info("가입완료" + res);
 				MailDTO mDTO = new MailDTO();
 
@@ -206,7 +206,7 @@ public class UserInfoController {
 		return "/user/findPwRes";
 	}
 
-	// 비번 재설정 메퍼
+	// 비번 재설정 메퍼 => 비밀번호 정합성이 떨어짐 에러 해결 해야함
 	@RequestMapping(value = "/user/doChangePw.do")
 	public String doChangePw(HttpServletRequest request, HttpServletResponse response, ModelMap model)
 			throws Exception {
@@ -248,7 +248,7 @@ public class UserInfoController {
 			// 데이터 잘 들어갔으니 변경 완료 알람 창 띄운 후 링크 변경
 			if (res == 1) {
 				msg = "비밀번호 변경이 성공적으로 마무리 되었습니다.";
-				url = "user/userLogin";
+				url = "/user/userLogin.do";
 				res = 0;
 			} else {
 				msg = "비밀번호 변경 에러 ";
@@ -256,10 +256,10 @@ public class UserInfoController {
 			}
 			// 디티오 비우기 (메모리 터짐)
 			pDTO = null;
-			// 이친구 리다이렉트로 넘어가면서 에러 해결이 안댐... 홀리 쉿...
-			model.addAttribute(msg);
+			// 키 값과 벨류 값 무조건 지정
+			model.addAttribute("msg", msg);
 			log.info(msg);
-			model.addAttribute(url);
+			model.addAttribute("url", url);
 			log.info(url);
 			msg = "";
 			url = "";
@@ -275,7 +275,7 @@ public class UserInfoController {
 	}
 
 	// 회원가입 이메일 인증 전송
-	@RequestMapping(value = "/createEmailCheck.do", method = RequestMethod.GET)
+	@RequestMapping(value = "user/createEmailCheck.do", method = RequestMethod.POST)
 	@ResponseBody
 	public boolean createEmailCheck(@RequestParam String userEmail, @RequestParam String random,
 			HttpServletRequest request, HttpSession session) throws Exception {
@@ -356,9 +356,9 @@ public class UserInfoController {
 			log.info(this.getClass().getName() + "회원정보 수정 end");
 			// 디티오 비우기 (메모리 터짐)
 			pDTO = null;
-			model.addAttribute(msg);
+			model.addAttribute("msg", msg);
 			log.info(msg);
-			model.addAttribute(url);
+			model.addAttribute("url", url);
 			log.info(url);
 
 		} catch (Exception e) {

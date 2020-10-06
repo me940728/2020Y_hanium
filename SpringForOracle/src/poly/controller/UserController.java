@@ -88,6 +88,7 @@ public class UserController {
 			// 성공된 로그인 정보를 세션에 담아 보내는 코드
 			session.setAttribute("email", uDTO.getEmail()); // 이메일로 바뀌었음
 			session.setAttribute("name_name", uDTO.getUser_name());
+			mDTO = null;
 		}
 		// 모델 객체에 메세지와 url을 담는 코드
 		model.addAttribute("msg", msg);
@@ -96,6 +97,7 @@ public class UserController {
 		log.info(this.getClass() + "/user/userLoginProc end!!");
 		// user/redirect.jsp로 리턴 해주느 코드
 		uDTO = null;
+		
 		return "/user/redirect";
 	}
 

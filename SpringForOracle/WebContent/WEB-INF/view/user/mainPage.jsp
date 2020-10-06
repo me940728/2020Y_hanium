@@ -2,10 +2,10 @@
 <%@page import="poly.dto.MyPageDTO"%>
 <%@page import="poly.util.CmmUtil"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-	<%
-	List<MyPageDTO> rList = (List<MyPageDTO>)request.getAttribute("rList");
-	String email = CmmUtil.nvl((String)session.getAttribute("email"));
+   pageEncoding="UTF-8"%>
+   <%
+   List<MyPageDTO> rList = (List<MyPageDTO>) request.getAttribute("rList");
+   String email = CmmUtil.nvl((String)session.getAttribute("email"));
 %>
 <!DOCTYPE html>
 <html>
@@ -20,9 +20,9 @@
 <!-- Favicons -->
 <link href="/resources/assets/img/favicon.png" rel="icon">
 <link href="/resources/assets/img/apple-touch-icon.png"
-	rel="apple-touch-icon">
-	
-	<link rel="stylesheet" href="/resources/css/profile.css">
+   rel="apple-touch-icon">
+   
+   <link rel="stylesheet" href="/resources/css/profile.css">
 <link rel="stylesheet" href="/resources/css/common.css">
 <link rel="stylesheet" href="/resources/css/detail-page.css">
 <link rel="stylesheet" href="/resources/css/new_post.css">
@@ -31,24 +31,37 @@
 
 <!-- Google Fonts -->
 <link
-	href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
-	rel="stylesheet">
+   href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+   rel="stylesheet">
 
 <!-- Vendor CSS Files -->
 <link href="/resources/assets/vendor/bootstrap/css/bootstrap.min.css"
-	rel="stylesheet">
+   rel="stylesheet">
 <link href="/resources/assets/vendor/icofont/icofont.min.css"
-	rel="stylesheet">
+   rel="stylesheet">
 <link href="/resources/assets/vendor/aos/aos.css" rel="stylesheet">
 <link
-	href="/resources/assets/vendor/line-awesome/css/line-awesome.min.css"
-	rel="stylesheet">
+   href="/resources/assets/vendor/line-awesome/css/line-awesome.min.css"
+   rel="stylesheet">
 <link
-	href="/resources/assets/vendor/owl.carousel/assets/owl.carousel.min.css"
-	rel="stylesheet">
+   href="/resources/assets/vendor/owl.carousel/assets/owl.carousel.min.css"
+   rel="stylesheet">
 
 <!-- Template Main CSS File -->
 <link href="/resources/assets/css/style.css" rel="stylesheet">
+
+<style type="text/css">
+#iconimgdiv{
+   position: relative;
+    top: 10%;
+}
+
+#iconimg{
+   max-width: 100px;
+    max-height: 100px;
+}
+
+</style>
 
 </head>
 
@@ -65,47 +78,46 @@
   </div>
 
   <!-- ======= Header ======= -->
-  		<header id="header">
-			<section class="h_inner">
+        <header id="header">
+         <section class="h_inner">
 
-				<h1 class="logo">
-					<!-- 메인 홈페이지로 이동 -->
-					<a href="/user/mainPage.do"> <!-- 사진 -->
-						<div class="sprite_MyC_icon"></div>
-						<div>
-							<div class="sprite_write_logo"></div>
-						</div>
-					</a>
-				</h1>
+            <h1 class="logo">
+               <!-- 메인 홈페이지로 이동 -->
+               <a href="/user/mainPage.do"> <!-- 사진 -->
+                  <div class="sprite_MyC_icon"></div>
+                  <div>
+                     <div class="sprite_write_logo"></div>
+                  </div>
+               </a>
+            </h1>
 
-				<div class="search_field">
-					<div class="fake_field">
-						<span class=sprite_small_search_icon></span>
-					</div>
-					<div>
-						<input type="text" placeholder="검색" tabindex="0">
-					</div>
+            <div class="search_field">
+               <div class="fake_field">
+                  <span class=sprite_small_search_icon></span>
+               </div>
+               <div>
+                  <input type="text" placeholder="검색" tabindex="0">
+               </div>
 
-				</div>
+            </div>
 
-				<!-- 기타 이동 로고-->
-				<div class="right_icons" style="width: 25%;">
-					<div>
-						<a href="/user/cngeUserInfo.do">회원정보</a>
-					</div>
-					<div>
-						<a href="/user/userLogOut.do">로그아웃</a>
-					</div>
-					<div>
-						<a href="/MyPage/MyPage.do">옷장</a>
-					</div>
-				</div>
-			</section>
-		</header>
+            <!-- 기타 이동 로고-->
+            <div class="right_icons" style="width: 25%;">
+               <div>
+                  <a href="/user/cngeUserInfo.do">회원정보</a>
+               </div>
+               <div>
+                  <a href="/user/userLogOut.do">로그아웃</a>
+               </div>
+               <div>
+                  <a href="/MyPage/MyPage.do">옷장</a>
+               </div>
+            </div>
+         </section>
+      </header>
 
   <!-- ======= Hero Section ======= -->
   <section class="hero-section" id="hero">
-
     <div class="wave">
 
       <svg width="100%" height="355px" viewBox="0 0 1920 355" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -120,6 +132,7 @@
 
     <div class="container">
       <div class="row align-items-center">
+      <div id="iconimgdiv"><img id="iconimg" alt="날씨가없습니다" src="/fileFolder/main.png"></div>
         <div class="col-12 hero-text-image">
           <div class="row">
             <div class="col-lg-7 text-center text-lg-left">
@@ -129,16 +142,20 @@
             </div>
             <div class="col-lg-5 iphone-wrap">
             <%for(MyPageDTO i : rList) {
-            		if(email.equals(i.getEmail())) {
-            			if(i.getGal_rep().equals("1")){%>
+                  if(email.equals(i.getEmail())) {
+                     if(i.getGal_rep().equals("1")){%>
              <img src="/fileFolder/<%=i.getFile_name()%>" alt="Image" class="phone-1" data-aos="fade-right"> 
+             <%}else{ %>
+             <img src="/fileFolder/main.png" alt="Image" class="phone-1" data-aos="fade-right">
+                <%}} else if(i.getEmail().equals("root")){%>
+                   <img src="/fileFolder/<%=i.getFile_name()%>" alt="Image" class="phone-1" data-aos="fade-right">
+                <%}}%>
               <!-- <img src="/resources/assets/img/phone_2.png" alt="Image" class="phone-2" data-aos="fade-right" data-aos-delay="200"> -->
             </div>
           </div>
         </div>
       </div>
     </div>
-	<%} } }%>
   </section><!-- End Hero -->
 
   <main id="main">
@@ -149,7 +166,7 @@
 
         <div class="row justify-content-center text-center mb-5">
           <div class="col-md-5" data-aos="fade-up">
-            <h2 class="section-heading">MY'C 의상추천</h2>
+            <h2 class="section-heading">MY'C의상추천</h2>
           </div>
         </div>
 

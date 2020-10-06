@@ -69,8 +69,23 @@
 			f.user_an.focus();
 			return false;
 		}
-
 	}
+    $('#emailBtn').on('click',function(){
+    	var email = document.getElementById("email").value;
+    	$.ajax({
+    		url: "",
+    		type: "POST",
+    		data: email,
+    		success: function(type) {
+				$('#result').text(data);
+			},
+			error: function() {
+				alert("이메일이 없습니다.");
+			}
+    	});
+    });
+
+
 </script>
 
 </head>
@@ -117,8 +132,8 @@
 
 
 					<div class="wrap-input100 validate-input m-b-10" data-validate = "Password is required">
-						<input class="input100" type="email" name="email" placeholder="이메일">
-						<button type="button" class="btn btn-info" id="emailBtn"> 인증문자발송</button>
+						<input class="input100" type="email" name="email" id="email" placeholder="이메일">
+						<input type ="button" type="button" class="btn btn-info" id="emailBtn" value="인증문자발송"> 
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
 							<i class="fa fa-lock"></i>
