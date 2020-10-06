@@ -24,7 +24,7 @@
 	#{password},
 	#{email},
 	#{sex},
-	#{user_name},
+	#{user_an},
 	#{user_name},
 	SYSDATE,
 	#{user_name},
