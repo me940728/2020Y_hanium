@@ -3,23 +3,19 @@ package poly.persistance.mapper;
 import java.util.List;
 
 import config.Mapper;
-import poly.dto.MyPageDTO;
-import poly.dto.UserInfoDTO;
+import poly.dto.ClosetInfoDTO;
 
 @Mapper("MyPageMapper")
 public interface IMyPageMapper {
 
-   List<MyPageDTO> getgalList();
+   List<ClosetInfoDTO> getMyPage();
 
-   int insertFile(MyPageDTO pDTO);
+   int insertFile(ClosetInfoDTO pDTO);
 
-   MyPageDTO getGalDetail(MyPageDTO pDTO);
+   int UpdateState(ClosetInfoDTO pDTO);
 
-   int UpdateState(MyPageDTO pDTO);
+   ClosetInfoDTO getimgDetail(ClosetInfoDTO pDTO);
 
-   int UpDateMynb(UserInfoDTO pDTO);
-
-   int insertFirst(MyPageDTO pDTO);
-
+   int insertFirst(ClosetInfoDTO pDTO);
    
 }

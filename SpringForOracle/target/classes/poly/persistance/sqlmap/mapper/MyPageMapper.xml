@@ -4,51 +4,59 @@
 <mapper namespace="poly.persistance.mapper.IMyPageMapper">
 
    <!-- 게시판 리스트 쿼리 -->
-   <select id="getgalList" resultType="MyPageDTO">
+   <select id="getMyPage" resultType="ClosetInfoDTO">
       SELECT 
-      G.gal_nb, 
-      G.file_name,
-      G.gal_name, 
-      G.reg_dt, 
-      G.email,
-      G.gal_rep, 
-      G.gal_content, 
-      U.my_nb,U.MY_CONTENT
+      C.clo_no, 
+      C.file_name,
+      C.post_title, 
+      C.reg_dt, 
+      C.user_no,
+      C.my_rep,
+      C.post_content<!-- , 
+      U.MY_CONTENT -->
       FROM 
-      GALTABLE G ,USER_INFO U 
+      CLOSET_INFO C <!-- ,USER_INFO U  -->
       WHERE 
-      U.email = G.EMAIL or G.EMAIL='root' and G.gal_nb>='0'ORDER BY G.gal_nb DESC
+      <!-- U.user_no = C.user_no or --> C.user_no='0' and C.clo_no>='0' ORDER BY C.clo_no DESC
    </select>
 
    <!-- 게시판 새글 등록 쿼리 -->
-   <insert id="insertFile" parameterType="MyPageDTO">
-      INSERT INTO GALTABLE(
-      gal_nb, 
-      email, 
-      gal_name, 
-      gal_content,
-      file_content,
-      file_name, gal_rep
+   <insert id="insertFile" parameterType="ClosetInfoDTO">
+      INSERT INTO CLOSET_INFO(
+      clo_no,
+     <!--  clo_type,
+      clo_class, -->
+      post_title, 
+      post_content,
+      file_path,
+      file_name,
+      my_rep,
+        <!--sum_rate,
+      win_rate,-->
+      reg_id,
+      chg_id,
+      reg_dt,
+      chg_dt,
+      user_no
       )
       VALUES(
-      gal_seq.nextval, 
-      #{email}, 
-      #{gal_name},
-      #{gal_content}, 
-      #{file_content}, 
+      clo_no_seq.nextval, 
+    <!--   #{clo_type},
+      #{clo_class}, -->
+      #{post_title},
+      #{post_content}, 
+      #{file_path}, 
       #{file_name}, 
-      #{gal_rep}
+      #{my_rep},
+      <!-- #{sum_rate},
+      #{win_rate}, -->
+      #{user_no},
+      #{user_no},
+      SYSDATE,
+      SYSDATE,
+      #{user_no}
       )
    </insert>
-   
-   <!--  개인 게시판 번호 최신화 쿼리 -->
-   <update id="UpDateMynb" parameterType="UserInfoDTO">
-      UPDATE USER_INFO
-      SET
-      my_nb=my_nb+1
-      WHERE
-      email = #{email}
-   </update>
    
    <!-- 상태글 새글 등록 쿼리 -->
    <update id="UpdateState" parameterType="UserInfoDTO">
@@ -56,28 +64,28 @@
       SET
       my_content=#{my_content}
       where
-      email = #{email}
+      user_no = #{user_no}
    </update>
 
-   <select id="getGalDetail" parameterType="MyPageDTO"
-      resultType="MyPageDTO">
+   <select id="getimgDetail" parameterType="ClosetInfoDTO"
+      resultType="ClosetInfoDTO">
       SELECT 
-      gal_nb, 
-      gal_name, 
-      gal_content,
+      clo_no, 
+      post_title, 
+      post_content,
       file_name
       FROM 
-      GALTABLE 
+      CLOSET_INFO 
       WHERE
-      gal_nb = #{gal_nb}
+      clo_no = #{clo_no}
    </select>
    
    <!--초기 게시판 새글 등록 쿼리(디폴트값으로 만들어두자)
-   <insert id="insertFirst" parameterType="MyPageDTO">
-      INSERT INTO GALTABLE(
-      GAL_NB, USER_ID, GAL_NAME, GAL_CONTENT,
-      FILE_CONTENT,
-      FILE_NAME, GAL_REP
+   <insert id="insertFirst" parameterType="ClosetInfoDTO">
+      INSERT INTO CLOSET_INFO(
+      clo_no, USER_ID, post_title, post_content,
+      file_path,
+      FILE_NAME, my_rep
       )
       VALUES(
       0,'root','초기게시판','초기게시판', 'C:\\hanium-space\\MyC\\WebContent\\fileFolder\\main.png', 'main.png',1
@@ -88,10 +96,10 @@
       POST_TITLE=#{POST_TITLE}, POST_CONTENT=#{POST_CONTENT} WHERE POST_NO=#{POST_NO} 
       </update> -->
 
-   <!-- 개인 사진 쿼리 <select id="filenotice" resultType="MyPageDTO"> SELECT G.file_name, 
-      G.gal_rep, FROM GALTABLE G, USER_INFO U where G.user_id = u.user_id </select> -->
+   <!-- 개인 사진 쿼리 <select id="filenotice" resultType="ClosetInfoDTO"> SELECT C.file_name, 
+      C.my_rep, FROM CLOSET_INFO C, USER_INFO U where C.user_id = u.user_id </select> -->
 
    <!-- 회원가입 <insert id="userinsert" parameterType="USERDTO"> INSERT INTO USER_INFO( 
-      user_id,seq,user_name,password,emall,addr1,addr2 ) VALUES( #{user_id},USER_seq.nextval,#{user_name},#{password},#{email},#{addr1},#{addr2} 
+      user_id,seq,user_name,password,emall,addr1,addr2 ) VALUES( #{user_id},USER_seq.nextval,#{user_name},#{password},#{user_no},#{addr1},#{addr2} 
       ) </insert> -->
 </mapper>

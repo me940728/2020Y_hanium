@@ -1,11 +1,11 @@
 <%@page import="java.util.List"%>
-<%@page import="poly.dto.MyPageDTO"%>
+<%@page import="poly.dto.ClosetInfoDTO"%>
 <%@page import="poly.util.CmmUtil"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	<%
 	String email = CmmUtil.nvl((String)session.getAttribute("email"));
-%>
+    %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -125,7 +125,6 @@
 				</div>
 			</section>
 		</header>
-		<br><br><br><br> 
 		<div class="limiter">
 		<div class="container-login100" style="background-image: url('/resources/images/img-01.jpg');">
 			<div class="wrap-login100 p-t-190 p-b-30">

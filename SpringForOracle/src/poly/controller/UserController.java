@@ -14,8 +14,8 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import poly.dto.ClosetInfoDTO;
 import poly.dto.MailDTO;
-import poly.dto.MyPageDTO;
 import poly.dto.UserInfoDTO;
 import poly.service.IUserService;
 import poly.service.impl.MailService;
@@ -126,10 +126,10 @@ public class UserController {
 	public String userMainPage(ModelMap model) throws Exception {
 		log.info(this.getClass() + "메인 start!!");
 		
-		List<MyPageDTO> rList = userService.getMyList();
+		List<ClosetInfoDTO> rList = userService.getMyList();
 		
 		if (rList==null){
-			rList = new ArrayList<MyPageDTO>();
+			rList = new ArrayList<ClosetInfoDTO>();
 		}
 		log.info(rList);
 		//조회된 리스트 결과값 넣어주기

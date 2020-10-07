@@ -2,6 +2,7 @@ package poly.service.impl;
 
 import javax.annotation.Resource;
 
+import org.apache.catalina.mbeans.UserMBean;
 import org.springframework.stereotype.Service;
 
 import poly.dto.MailDTO;
@@ -82,6 +83,4 @@ public class UserInfoService implements IUserInfoService{
 	public int updateUserInfo(UserInfoDTO pDTO) {
 		return userInfoMapper.updateUserInfo(pDTO);
 	}
-
-
 }

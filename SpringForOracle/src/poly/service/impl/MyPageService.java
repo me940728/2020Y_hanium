@@ -6,8 +6,7 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
-import poly.dto.MyPageDTO;
-import poly.dto.UserInfoDTO;
+import poly.dto.ClosetInfoDTO;
 import poly.persistance.mapper.IMyPageMapper;
 import poly.service.IMyPageService;
 
@@ -20,30 +19,24 @@ public class MyPageService implements IMyPageService {
    
    //갤러리 리스트
    @Override
-   public List<MyPageDTO> getMyPage() {
-      return MyPageMapper.getgalList();
+   public List<ClosetInfoDTO> getMyPage() {
+      return MyPageMapper.getMyPage();
    }
 
    //갤러리 게시물 업로드
    @Override
-   public int insertFile(MyPageDTO pDTO) {
+   public int insertFile(ClosetInfoDTO pDTO) {
       return MyPageMapper.insertFile(pDTO);
    }
 
    @Override
-   public MyPageDTO getimgDetail(MyPageDTO pDTO) {
-      return  MyPageMapper.getGalDetail(pDTO);
+   public ClosetInfoDTO getimgDetail(ClosetInfoDTO pDTO) {
+      return  MyPageMapper.getimgDetail(pDTO);
    }
 
    @Override
-   public int UpdateState(MyPageDTO pDTO) {
+   public int UpdateState(ClosetInfoDTO pDTO) {
       return  MyPageMapper.UpdateState(pDTO);
    }
-
-   @Override
-   public int UpDateMynb(UserInfoDTO PDTO) {
-      return MyPageMapper.UpDateMynb(PDTO);
-   }
-
 
 }

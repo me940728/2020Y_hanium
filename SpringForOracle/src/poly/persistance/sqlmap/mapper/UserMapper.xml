@@ -12,16 +12,15 @@
 		WHERE 
 		EMAIL = #{email} AND PASSWORD = #{password}
 	</select>
-	<select id="getMyList" resultType="MyPageDTO">
-		SELECT
-		G.file_name, 
-		G.gal_nb,
-		G.gal_rep,
-		G.email
-		FROM 
-		GALTABLE G,
-		USER_INFO U
-		WHERE 
-		U.email = G.EMAIL or G.EMAIL='root' and G.gal_nb>='0'ORDER BY G.gal_nb DESC
-	</select>
+	<select id="getMyList" resultType="ClosetInfoDTO">
+      SELECT
+      C.file_name, 
+      C.clo_no,
+      C.my_rep,
+      C.user_no,
+      FROM 
+      CLOSET_INFO C <!-- ,USER_INFO U  -->
+      WHERE 
+      <!-- U.user_no = C.user_no or --> C.user_no='0' and C.clo_no>='0' ORDER BY C.clo_no DESC
+   </select>
 </mapper>

@@ -1,12 +1,12 @@
 <%@page import="java.util.List"%>
-<%@page import="poly.dto.MyPageDTO"%>
+<%@page import="poly.dto.ClosetInfoDTO"%>
 <%@page import="poly.util.CmmUtil"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
    <%
-   List<MyPageDTO> rList = (List<MyPageDTO>) request.getAttribute("rList");
-   String email = CmmUtil.nvl((String)session.getAttribute("email"));
-%>
+      List<ClosetInfoDTO> rList = (List<ClosetInfoDTO>) request.getAttribute("rList");
+       String user_no = CmmUtil.nvl((String)session.getAttribute("user_no"));
+   %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -141,10 +141,11 @@
               <p data-aos="fade-right" data-aos-delay="200" data-aos-offset="-500"><a href="#" class="btn btn-outline-white">추천받기</a></p>
             </div>
             <div class="col-lg-5 iphone-wrap">
-            <%for (MyPageDTO i : rList) {
-                   if(email.equals(i.getEmail()) || i.getEmail().equals("root")){
-                    if (CmmUtil.nvl(i.getGal_rep()).equals("1")) {
-                     %>
+            <%
+               for (ClosetInfoDTO i : rList) {
+                             if(user_no.equals(i.getUser_no()) || i.getUser_no().equals("root")){
+                              if (CmmUtil.nvl(i.getMy_rep()).equals("1")) {
+            %>
              <img src="/fileFolder/<%=i.getFile_name()%>" alt="Image" class="phone-1" data-aos="fade-right"> 
                 <%break; } else {%>
                    <img src="/fileFolder/main.png" alt="Image" class="phone-1" data-aos="fade-right">

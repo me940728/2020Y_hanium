@@ -90,7 +90,8 @@ public class UserInfoController {
 			log.info("디티오에 잘 들어감");
 
 			int res = userInfoService.insertUserInfo(pDTO);
-
+			log.info("res는 몇?? " + res);
+			
 			if (res == 1) {
 				msg = "회원가입이 완료되었습니다.";
 				url = "/user/userLogin.do";
@@ -371,5 +372,18 @@ public class UserInfoController {
 		log.info(this.getClass().getName() + "회원정보 수정 end 3");
 		return "/user/redirect";
 	}
-
+	// 이메일 인증 시 중복확인
+	@RequestMapping(value = "emailCheckOK.do")
+	public String emailCehckOK(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		request.setCharacterEncoding("UTF-8");
+		String email = CmmUtil.nvl(request.getParameter("email"));
+		UserInfoDTO pDTO = new UserInfoDTO();
+		int result = 0;
+		pDTO.setEmail(email);
+		// result = userInfoService.confirmEmail(pDTO);
+		//결과값 보내기
+		response.getWriter().write(String.valueOf(result));
+		pDTO = null;
+		return "ajax";
+	}
 }

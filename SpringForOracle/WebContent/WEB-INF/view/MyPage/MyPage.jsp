@@ -1,11 +1,11 @@
 <%@page import="poly.util.CmmUtil"%>
-<%@page import="poly.dto.MyPageDTO"%>
+<%@page import="poly.dto.ClosetInfoDTO"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
 <%
-   List<MyPageDTO> rList = (List<MyPageDTO>) request.getAttribute("rList");
-   String email = CmmUtil.nvl((String)session.getAttribute("email"));
+   List<ClosetInfoDTO> rList = (List<ClosetInfoDTO>) request.getAttribute("rList");
+    String user_no = CmmUtil.nvl((String)session.getAttribute("user_no"));
 %>
 <!DOCTYPE html>
 <html>
@@ -23,7 +23,8 @@
 <!---->
 </head>
 <body>
-   <section id="container" style="background: linear-gradient(to right, rgba(39, 70, 133, 0.8) 0%, rgba(61, 179, 197, 0.8) 100%);">
+   <section id="container"
+      style="background: linear-gradient(to right, rgba(39, 70, 133, 0.8) 0%, rgba(61, 179, 197, 0.8) 100%);">
       <header id="header">
          <section class="h_inner">
 
@@ -63,9 +64,8 @@
       </header>
 
       <%
-         for (MyPageDTO i : rList) {
-            if(email.equals(i.getEmail()) || i.getEmail().equals("root")){
-            
+         for (ClosetInfoDTO i : rList) {
+                              if(user_no.equals(i.getUser_no()) || i.getUser_no().equals("0") ){
       %>
       <div id="main_container">
 
@@ -74,10 +74,11 @@
             <div class="hori_cont">
                <div class="profile_wrap">
                   <div class="profile_img">
-                     <%for (MyPageDTO k : rList) {
-                         if (CmmUtil.nvl(k.getGal_rep()).equals("1")) {
+                     <%
+                        for (ClosetInfoDTO k : rList) {
+                                                                       if (CmmUtil.nvl(k.getMy_rep()).equals("1")) {
                      %>
-                     <a href="/MyPage/imgDetail.do?no=<%=k.getGal_nb()%>"> <img
+                     <a href="/MyPage/imgDetail.do?no=<%=k.getClo_no()%>"> <img
                         src="/fileFolder/<%=k.getFile_name()%>" /></a>
                      <%
                         break; }}
@@ -87,13 +88,19 @@
 
                <div class="detail">
                   <div class="top">
-                     <div class="email"><%=email%></div>
+                     <div class="email"><%=user_no%></div>
                   </div>
-
+                  <%
+                   int count=0;
+                                                  for (ClosetInfoDTO k : rList) {
+                                                       if (user_no == k.getUser_no()) {
+                                                       count++;
+                                                       }}
+                %>
                   <ul class="middle">
-                     <li><span>게시물</span>  <%=i.getMy_nb()%></li>
-                     <li><span>팔로워</span>  <%=i.getMy_nb()%></li>
-                     <li><span>팔로우</span>  <%=i.getMy_nb()%></li>
+                     <li><span>게시물</span><%=count%></li>
+                     <li><span>팔로워</span><%=count%></li>
+                     <li><span>팔로우</span><%=count%></li>
                   </ul>
                   <span>
                      <div class="profile_state">
@@ -115,18 +122,18 @@
             </div>
             <div class="mylist_contents contents_container active">
                <%
-            }
-               break;
-            }
+                  }
+                                                            break;
+                                                         }
 
-               for (MyPageDTO e : rList) {
-                  if(email.equals(e.getEmail()) || e.getEmail().equals("root")){
-                     if (CmmUtil.nvl(e.getGal_nb()).equals("0")) {
-                     
-                        } else {
-                  %>
+                                                            for (ClosetInfoDTO e : rList) {
+                                                               if(user_no.equals(e.getUser_no()) || e.getUser_no().equals("0")){
+                                                                  if (CmmUtil.nvl(e.getClo_no()).equals("0")) {
+                                                                  
+                                                                     } else {
+               %>
                <div class="pic">
-                  <a href="/MyPage/imgDetail.do?no=<%=e.getGal_nb()%>"> <img
+                  <a href="/MyPage/imgDetail.do?no=<%=e.getClo_no()%>"> <img
                      src="/fileFolder/<%=e.getFile_name()%>" alt="이미지가 없습니다." /></a>
                </div>
                <%}}}%>

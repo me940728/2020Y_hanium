@@ -6,7 +6,7 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
-import poly.dto.MyPageDTO;
+import poly.dto.ClosetInfoDTO;
 import poly.dto.UserInfoDTO;
 import poly.persistance.mapper.IUserMapper;
 import poly.service.IUserService;
@@ -23,7 +23,7 @@ public class UserService implements IUserService{
 	}
 
 	@Override
-	public List<MyPageDTO> getMyList() {
+	public List<ClosetInfoDTO> getMyList() {
 		return userMapper.getMyList();
 	}
 
