@@ -14,13 +14,13 @@
 	</select>
 	<select id="getMyList" resultType="ClosetInfoDTO">
       SELECT
-      C.file_name, 
-      C.clo_no,
-      C.my_rep,
-      C.user_no,
+      C.FILE_NAME, 
+      C.CLO_NO,
+      C.MY_REP,
+      C.USER_NO
       FROM 
-      CLOSET_INFO C <!-- ,USER_INFO U  -->
+      CLOSET_INFO C, USER_INFO U
       WHERE 
-      <!-- U.user_no = C.user_no or --> C.user_no='0' and C.clo_no>='0' ORDER BY C.clo_no DESC
+      U.USER_NO = C.USER_NO or C.USER_NO = '0' AND C.CLO_NO >= '0' ORDER BY C.CLO_NO DESC
    </select>
 </mapper>

@@ -43,7 +43,7 @@ public class UserInfoService implements IUserInfoService{
 			res = 2;
 		} else {
 			
-			int success = userInfoMapper.InsertUserInfo(pDTO);
+			int success = userInfoMapper.insertUserInfo(pDTO);
 	
 			
 			if(success > 0 ) {

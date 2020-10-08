@@ -4,7 +4,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
    <%
-      List<ClosetInfoDTO> rList = (List<ClosetInfoDTO>) request.getAttribute("rList");
+      List<ClosetInfoDTO> rList = (List<ClosetInfoDTO>)request.getAttribute("rList");
        String user_no = CmmUtil.nvl((String)session.getAttribute("user_no"));
    %>
 <!DOCTYPE html>

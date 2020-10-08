@@ -86,8 +86,9 @@ public class UserController {
 			//-------------------------
 			url = "/user/mainPage.do";
 			// 성공된 로그인 정보를 세션에 담아 보내는 코드
-			session.setAttribute("email", uDTO.getEmail()); // 이메일로 바뀌었음
+			session.setAttribute("email", uDTO.getEmail()); 
 			session.setAttribute("name_name", uDTO.getUser_name());
+			session.setAttribute("user_no", uDTO.getUser_no());
 			mDTO = null;
 		}
 		// 모델 객체에 메세지와 url을 담는 코드
@@ -129,6 +130,8 @@ public class UserController {
 		List<ClosetInfoDTO> rList = userService.getMyList();
 		
 		if (rList==null){
+			
+			log.info("rList Null입니다.");
 			rList = new ArrayList<ClosetInfoDTO>();
 		}
 		log.info(rList);

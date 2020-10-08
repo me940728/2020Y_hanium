@@ -3,7 +3,7 @@
 <!-- JAVA와 연결할 Mapper 파일 설정 -->
 <mapper namespace="poly.persistance.mapper.IUserInfoMapper">
    <!-- 회원 가입하기 (회원정보 등록하기) -->
-   <insert id="InsertUserInfo" parameterType="UserInfoDTO">
+   <insert id="insertUserInfo" parameterType="UserInfoDTO">
       INSERT INTO USER_INFO(
       USER_NO,
       PASSWORD,
@@ -11,7 +11,7 @@
       EMAIL,
       SEX,
       USER_AN,
-      RANDOM,
+      <!--RANDOM,-->
       MY_CONTENT,
       REG_ID,
       CHG_ID,
@@ -25,8 +25,8 @@
       #{email},
       #{sex},
       #{user_an},
-      #{random},
-      '상태글을 입력하세요.',
+      <!--#{random},-->
+      '상태글.',
       #{user_name},
       #{user_name},
       SYSDATE,

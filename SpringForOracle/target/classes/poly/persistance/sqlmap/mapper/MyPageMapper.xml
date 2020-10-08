@@ -6,33 +6,32 @@
    <!-- 게시판 리스트 쿼리 -->
    <select id="getMyPage" resultType="ClosetInfoDTO">
       SELECT 
-      C.clo_no, 
-      C.file_name,
-      C.post_title, 
-      C.reg_dt, 
-      C.user_no,
-      C.my_rep,
-      C.post_content<!-- , 
-      U.MY_CONTENT -->
+      C.CLO_NO, 
+      C.FILE_NAME,
+      C.POST_TITLE, 
+      C.REG_DT, 
+      C.USER_NO,
+      C.MY_REP,
+      C.post_content, U.MY_CONTENT
       FROM 
-      CLOSET_INFO C <!-- ,USER_INFO U  -->
+      CLOSET_INFO C, USER_INFO U
       WHERE 
-      <!-- U.user_no = C.user_no or --> C.user_no='0' and C.clo_no>='0' ORDER BY C.clo_no DESC
+      U.USER_NO = C.USER_NO OR C.USER_NO='0' AND C.CLO_NO>='0' ORDER BY C.CLO_NO DESC
    </select>
 
    <!-- 게시판 새글 등록 쿼리 -->
    <insert id="insertFile" parameterType="ClosetInfoDTO">
       INSERT INTO CLOSET_INFO(
       clo_no,
-     <!--  clo_type,
-      clo_class, -->
+<!--       clo_type, -->
+<!--       clo_class, -->
       post_title, 
       post_content,
       file_path,
       file_name,
       my_rep,
-        <!--sum_rate,
-      win_rate,-->
+<!--  sum_rate, -->
+<!--  win_rate, -->
       reg_id,
       chg_id,
       reg_dt,
@@ -40,9 +39,9 @@
       user_no
       )
       VALUES(
-      clo_no_seq.nextval, 
-    <!--   #{clo_type},
-      #{clo_class}, -->
+      clo_seq.nextval, 
+<!--       #{clo_type}, -->
+<!--       #{clo_class}, -->
       #{post_title},
       #{post_content}, 
       #{file_path}, 
@@ -70,14 +69,14 @@
    <select id="getimgDetail" parameterType="ClosetInfoDTO"
       resultType="ClosetInfoDTO">
       SELECT 
-      clo_no, 
-      post_title, 
-      post_content,
-      file_name
+      CLO_NO, 
+      POST_TITLE, 
+      POST_CONTENT,
+      FILE_NAME
       FROM 
       CLOSET_INFO 
       WHERE
-      clo_no = #{clo_no}
+      CLO_NO = #{clo_no}
    </select>
    
    <!--초기 게시판 새글 등록 쿼리(디폴트값으로 만들어두자)
