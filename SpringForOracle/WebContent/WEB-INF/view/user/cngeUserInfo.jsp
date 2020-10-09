@@ -132,7 +132,7 @@
 						~님의 정보수정입니다.
 					</span>
 					
-<form name="f" method="post" action="insertUserInfo.do" onsubmit="return doRegUserCheck(this);">
+                  <form name="f" method="post" action="insertUserInfo.do" onsubmit="return doRegUserCheck(this);">
 					
 				   <div class="wrap-input100 validate-input m-b-10" data-validate = "Username is required">
 						<input class="input100" type="text" name="user_name" placeholder="이름">
