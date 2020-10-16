@@ -24,7 +24,7 @@ public class MailService implements IMailService{
 	//
 	final String host = "smtp.naver.com"; // 상수값으로 한 이유는 변하면 안디는 값이기 때문
 	final String user = "me9"; // 이메일 넣기
-	final String password = "qnf"; // 비번 넣기
+	final String password = "q"; // 비번 넣기
 	
 	@Override
 	public int doSendMail(MailDTO pDTO) {
