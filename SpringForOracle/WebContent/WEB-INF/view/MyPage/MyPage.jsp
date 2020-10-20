@@ -47,7 +47,6 @@
                </div>
 
             </div>
-
             <!-- 기타 이동 로고-->
             <div class="right_icons" style="width: 25%;">
                <div>

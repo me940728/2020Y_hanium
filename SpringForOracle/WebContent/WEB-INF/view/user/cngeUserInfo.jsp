@@ -161,49 +161,52 @@
 
 					<div class="wrap-input100 validate-input m-b-10" data-validate = "Password is required">
 						<input class="input100" type="email" name="email" id="email" placeholder="이메일">
-						<input type ="button" type="button" class="btn btn-info" id="emailBtn" value="인증문자발송"> 
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
 							<i class="fa fa-lock"></i>
 						</span>
 					</div>
-					
+					<div class="container-login100-form-btn p-t-10">
+						<button type="button" class="login100-form-btn" id="emailCheck"
+							onclick="btnSumit">인증문자발송</button>
+					</div>
+					<br>
 					<div class="wrap-input100 validate-input m-b-10" data-validate = "Password is required">
 						<input class="input100" type="text" name="emailCheck" placeholder="인증번호">
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
 							<i class="fa fa-lock"></i>
 						</span>
-						<button type="button" class="btn btn-info" id="emailAuth"> 이메일 인증</button>
 					</div>
-					<input type="hidden" path="random" id="radom" value="${random }"/>
-					
-					
-					<div class="wrap-input100 validate-input m-b-10" data-validate = "Password is required">
-						<input class="input100" type="text" name="sex" placeholder="성별">
-						<span class="focus-input100"></span>
-						<span class="symbol-input100">
-							<i class="fa fa-user"></i>
-						</span>
-					</div>
-					
-					
-					<div class="wrap-input100 validate-input m-b-10" data-validate = "Password is required">
-						<input class="input100" type="text" name="user_an" placeholder="닉네임">
-						<span class="focus-input100"></span>
-						<span class="symbol-input100">
-							<i class="fa fa-user"></i>
-						</span>
-					</div>
-
-
 
 					<div class="container-login100-form-btn p-t-10">
-						<button type="submit" class="login100-form-btn">
-							완료
-						</button>
-					</div>
-</form>
+						<button type="button" class="login100-form-btn" id="emailAuth">
+							이메일 인증</button>
+                    </div>
+                     <br>
+						<div class="wrap-input100 validate-input m-b-10"
+							data-validate="Password is required">
+							<input class="input100" type="text" name="sex" placeholder="성별">
+							<span class="focus-input100"></span> <span
+								class="symbol-input100"> <i class="fa fa-user"></i>
+							</span>
+						</div>
+
+
+						<div class="wrap-input100 validate-input m-b-10"
+							data-validate="Password is required">
+							<input class="input100" type="text" name="user_an"
+								placeholder="닉네임"> <span class="focus-input100"></span>
+							<span class="symbol-input100"> <i class="fa fa-user"></i>
+							</span>
+						</div>
+
+
+
+						<div class="container-login100-form-btn p-t-10">
+							<button type="submit" class="login100-form-btn">완료</button>
+						</div>
+				</form>
 					<div class="container-login100-form-btn p-t-10">
 						<a href="/user/userLogin.do" class="login100-form-btn"> <!-- href 앞에 /와 끝에 .do를 붙혀라 -->
 							취소
