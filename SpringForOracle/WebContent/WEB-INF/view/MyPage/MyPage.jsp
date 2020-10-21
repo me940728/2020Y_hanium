@@ -61,7 +61,6 @@
             </div>
          </section>
       </header>
-
       <%
          for (ClosetInfoDTO i : rList) {
                               if(user_no.equals(i.getUser_no()) || i.getUser_no().equals("0") ){
