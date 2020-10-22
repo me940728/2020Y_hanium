@@ -68,7 +68,6 @@
       <div id="main_container">
 
          <section class="b_inner">
-
             <div class="hori_cont">
                <div class="profile_wrap">
                   <div class="profile_img">
