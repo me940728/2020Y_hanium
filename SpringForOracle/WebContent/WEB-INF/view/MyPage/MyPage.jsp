@@ -19,7 +19,7 @@
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>리스트 불러오기</title>
 <!---->
 </head>
 <body>
