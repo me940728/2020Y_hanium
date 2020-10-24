@@ -9,6 +9,7 @@
 %>
 <!DOCTYPE html>
 <html>
+
 <head>
 <link rel="stylesheet" href="/resources/css/profile.css">
 <link rel="stylesheet" href="/resources/css/common.css">
