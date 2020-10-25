@@ -100,6 +100,7 @@
                      <li><span>팔로워</span><%=count%></li>
                      <li><span>팔로우</span><%=count%></li>
                   </ul>
+                  
                   <span>
                      <div class="profile_state">
                         <%=i.getMy_content()%>
