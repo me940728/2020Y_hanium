@@ -39,6 +39,7 @@ public class MyPageController {
       if (rList.isEmpty()) {
          rList = new ArrayList<ClosetInfoDTO>();// 메모리에 올려줘라
       }
+      
       log.info("2" + rList);
       // 조회된 리스트 결과값 넣어주기
       model.addAttribute("rList", rList);
