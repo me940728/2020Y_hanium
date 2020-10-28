@@ -193,7 +193,7 @@ public class MyPageController {
       } else {
          msg = "수정에 성공했습니다";
       }
-
+      // 모델 객체로 올리기 성공 
       model.addAttribute("msg", msg);
       model.addAttribute("url", url);
 
