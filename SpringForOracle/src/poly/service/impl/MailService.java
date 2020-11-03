@@ -19,7 +19,7 @@ import poly.util.CmmUtil;
 
 @Service("MailService")
 public class MailService implements IMailService{
-	// 
+	// 로거 
 	private Logger log = Logger.getLogger(this.getClass());
 	//
 	final String host = "smtp.naver.com"; // 상수값으로 한 이유는 변하면 안디는 값이기 때문
