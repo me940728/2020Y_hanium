@@ -73,7 +73,6 @@ public class MailService implements IMailService{
 		}
 		// 함수 종료 로그
 		log.info(this.getClass() + "doSendMail end!!");
-				
 		return res;
 	}
 	
