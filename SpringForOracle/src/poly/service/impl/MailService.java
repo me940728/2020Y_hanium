@@ -19,6 +19,7 @@ import poly.util.CmmUtil;
 
 @Service("MailService")
 public class MailService implements IMailService{
+	
 	// 로거 
 	private Logger log = Logger.getLogger(this.getClass());
 	// 메일 보안 유의 하기
