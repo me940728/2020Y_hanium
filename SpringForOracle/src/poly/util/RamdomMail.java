@@ -3,7 +3,7 @@ package poly.util;
 import java.util.Random;
 
 public class RamdomMail {
-	// 랜덤 값을 생성하기 코드
+	// 랜덤 값을 생성하기 코드 // 
 	public static String SendRamdomMail() {
 		// 랜덤 생성 메서드
 		Random rand = new Random();
