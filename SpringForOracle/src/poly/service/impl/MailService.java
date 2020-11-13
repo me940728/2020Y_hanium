@@ -29,6 +29,7 @@ public class MailService implements IMailService{
 
 	@Override
 	public int doSendMail(MailDTO pDTO) {
+		// 로그생성 주석
 		log.info(this.getClass().getName()+ "do.sendMail start!!");
 		
 		//메일 방송 성공여부 확인용 변수
