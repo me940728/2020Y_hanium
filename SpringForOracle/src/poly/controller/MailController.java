@@ -17,7 +17,7 @@ import poly.util.CmmUtil;
 
 @Controller
 public class MailController {
-	
+	// 로그 작성 인스턴스 생성
 	private Logger log = Logger.getLogger(this.getClass());
 	
 	// 메일 서비스 리소스로 메로리 올리기
