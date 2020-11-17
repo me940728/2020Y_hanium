@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>비밀번호 재설정</title>
-<!-- 스파게티임 수정 필요요망 -->
+<!-- 스파게티임 수정 필요요망  -->
 <meta name="viewport" content="width=device-width, initial-scale=1"> <!-- 경로 앞에 / 붙히기 무조건 -->
 <!--===============================================================================================-->
 <link rel="icon" type="image/png" href="/resources/images/icons/favicon.ico" />
