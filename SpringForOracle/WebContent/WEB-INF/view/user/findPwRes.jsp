@@ -31,6 +31,7 @@
 <link rel="stylesheet" type="text/css" href="/resources/css/main.css">
 <!--===============================================================================================-->
 <script type="text/javascript">
+
     // 이메일 인증 서비스 만들기
 	// 회원가입 유효성 체크 
 	function doSerchUserCheck(f) {
