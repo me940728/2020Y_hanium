@@ -16,10 +16,12 @@
 <head>
 <meta charset="UTF-8">
 <title>알림</title>
+
 <script type="text/javascript">
 alert("<%=msg%>");
 </script>
 </head>
+
 <body>
 
 <%=CmmUtil.nvl(pDTO.getUser_name()) %>님의 회원가입을 축하드립니다.
