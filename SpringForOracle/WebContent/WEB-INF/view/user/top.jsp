@@ -4,6 +4,8 @@
 <% 
 String user_name = CmmUtil.nvl((String)session.getAttribute("name"));
 %>
+
+
 <style>
 #top {
 display : inline;
